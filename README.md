@@ -37,7 +37,7 @@ sudo /home/pi/fbcp-ili9341/build/fbcp-ili9341 &
 
 ## Bluetooth
 ### May 12
-	Now for the bluetooth audio.
+Now for the bluetooth audio.
 ~~~
 	sudo bluetoothctl
 	Agent on
@@ -45,14 +45,13 @@ sudo /home/pi/fbcp-ili9341/build/fbcp-ili9341 &
 	Pair XX:XX:XX
 	Trust XX:XX:XX
 	Connect XX:XX:XX:X
-	
 ~~~
 It paired, and got trusted
-Some issues connect. 
-I found a page that recommentded running pactl… That didn't work.
+Some issues connecting. 
+I found a page that recommentded running pactl… That didn't work. (i turns out I don't need PulseAudio on the most recent version of Raspbian)
 It's not clear whether the Pi Zero W that I have already has the libraries or I have to apt-get new ones.
 	
-	----
+	
 ### May 14
 	OK here's another attempt. I tried a different pair of headphones, thinking it's a hardware issue. That didn't work.
 	
@@ -75,20 +74,20 @@ Done.
 And logout/login again
 Now install the BlueAlsa proxy (I don’t know what 'proxy' refers to - yet)
 ~~~
-Sudo Apt-get install bluealsa
+sudo apt-get install bluealsa
 ~~~	
 	
 	Did this 
 	bluetoothd with a2dp plugin
 	There is a a2dp plugin for our bluetooth agent. So we'll change the services' ExecStart parameter like so:
-	
+~~~	
 		sudo nano /etc/systemd/system/bluetooth.target.wants/bluetooth.service
 		
 		#And while we're here we'll disable sap since this may cause some errors:
 		
 		ExecStart=/usr/lib/bluetooth/bluetoothd --noplugin=sap --plugin=a2dp
-	
-	Not sure if this was necessary by the way. I'd like to remove this a2dp configuration and see if it still works.
+~~~	
+Not sure if this was necessary by the way. I'd like to remove this a2dp configuration and see if it still works.
 	
 	1:20 AM - MADE IT WORRRRKKKKKKKKKKKKKKKKKKKKKKK
 	
@@ -120,19 +119,19 @@ pi@raspberrypi:~ $ cat .asoundrc
 	WEEEEEEEEEEEEEEEEEEEEEEEEEE!
 	
 	
-###TODO
+### TODO
 		a. Now let's figure out why omxplayer STOPs the audio if I fast forward through the video
 		b. What are the various options in .asoundrc ?
 		c. How can I make omxplayer resilient to turning off the headphones (it seems to crash/hang when I do so)
 		
 
-###May 16, 2020
+### May 16, 2020
 	Mount the external hard drive mount /dev/sda1 /mnt
 	Copy the media files : I learned to use "rsync" to copy folders
 
 cp -rvn /mnt/Videos/Downloads/Frasier/ ./vids/Frasier/
 
-##Which version of Raspbian
+## Which version of Raspbian
 ~~~
 pi@raspberrypizero:~ $ cat /etc/os-release
 PRETTY_NAME="Raspbian GNU/Linux 10 (buster)"
