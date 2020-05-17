@@ -39,12 +39,12 @@ sudo /home/pi/fbcp-ili9341/build/fbcp-ili9341 &
 ### May 12
 Now for the bluetooth audio.
 ~~~
-	sudo bluetoothctl
-	Agent on
-	Scan on
-	Pair XX:XX:XX
-	Trust XX:XX:XX
-	Connect XX:XX:XX:X
+sudo bluetoothctl
+Agent on
+Scan on
+Pair XX:XX:XX
+Trust XX:XX:XX
+Connect XX:XX:XX:X
 ~~~
 It paired, and got trusted
 Some issues connecting. 
@@ -53,17 +53,17 @@ It's not clear whether the Pi Zero W that I have already has the libraries or I 
 	
 	
 ### May 14
-	OK here's another attempt. I tried a different pair of headphones, thinking it's a hardware issue. That didn't work.
-	
-	I then followed the instructions here, and I am one step further. The headphones connect successfully, and stay connected!
-		[https://peppe8o.com/fixed-connect-bluetooth-headphones-with-your-raspberry-pi/](https://peppe8o.com/fixed-connect-bluetooth-headphones-with-your-raspberry-pi/)
+OK here's another attempt. I tried a different pair of headphones, thinking it's a hardware issue. That didn't work.
+
+I then followed the instructions here, and I am one step further. The headphones connect successfully, and stay connected!
+[https://peppe8o.com/fixed-connect-bluetooth-headphones-with-your-raspberry-pi/](https://peppe8o.com/fixed-connect-bluetooth-headphones-with-your-raspberry-pi/)
 		
-	But no audio coming out of the omxplayer into the headphones.
-	Note that I haven't checked if an HDMI connected Pi will play audio.
+But no audio coming out of the omxplayer into the headphones.
+Note that I haven't checked if an HDMI connected Pi will play audio.
 	
-	<at this point I rebuilt the whole set up from scratch on the 128GB micro SD card that I received in the mail>
-	<I restarted effectively all the steps, which was a good thing because I had tried so many things to make Bluetooth work, I lost track of the state of the system>
-	
+<at this point I rebuilt the whole set up from scratch on the 128GB micro SD card that I received in the mail>
+<I restarted effectively all the steps, which was a good thing because I had tried so many things to make Bluetooth work, I lost track of the state of the system>
+***	
 Add pi to the bluetooth group.
 ~~~
 pi@raspberrypi:~ $ sudo adduser pi bluetooth
@@ -89,18 +89,18 @@ sudo apt-get install bluealsa
 ~~~	
 Not sure if this was necessary by the way. I'd like to remove this a2dp configuration and see if it still works.
 	
-	1:20 AM - MADE IT WORRRRKKKKKKKKKKKKKKKKKKKKKKK
+1:20 AM - MADE IT WORRRRKKKKKKKKKKKKKKKKKKKKKKK
 	
-	OK so I was messing all evening with Bluetooth settings trying to figure out what the f.. SCO is , and what A2DP is.
-	I learned SCO is the 'profile' for VOIP audio.
-	And that A2DP is the 'profile' for high quality audio.
+OK so I was messing all evening with Bluetooth settings trying to figure out what the f.. SCO is , and what A2DP is.
+I learned SCO is the 'profile' for VOIP audio.
+And that A2DP is the 'profile' for high quality audio.
 	
-	I was having TWO issues in the last two hours:
-	1- Anytime I tried to play audio via the 'aplay' command (the .. alsa .. player),  I'd get noise whether it was an mp3 or a movie. I eventually figured that the tool expects raw audio, and I was passing it encoded data (mp3!) Of COURSE I'd only get noise! DAMN. When it clicked in my head that THAT may be the issue, I quickly looked for and downloaded a .wav file and it played beautifully well!
+I was having TWO issues in the last two hours:
+ 1- Anytime I tried to play audio via the 'aplay' command (the .. alsa .. player),  I'd get noise whether it was an mp3 or a movie. I eventally figured that the tool expects raw audio, and I was passing it encoded data (mp3!) Of COURSE I'd only get noise! DAMN. When it clicked in my head that THAT may be the issue, I quickly looked for and downloaded a .wav file and it played beautifully well!
 	
-	2- When I tried to play videos or audio in omxplayer, no sound would come out! I tried the "-o alsa" option in vain (as well as the "-o both" option), UNTIL, I realized I have to include some additional info, namely the MAC address of the bluetooth device I paired with the Rpi.
-	Omxplayer -o alsa:bluealsa <path to file>
-	And I had a corresponding profile in the .asoundrc file in my home directory
+ 2- When I tried to play videos or audio in omxplayer, no sound would come out! I tried the "-o alsa" option in vain (as well as the "-o both" option), UNTIL, I realized I have to include some additional info, namely the MAC address of the bluetooth device I paired with the Rpi.
+	omxplayer -o alsa:bluealsa <path to file>
+And I had a corresponding profile in the .asoundrc file in my home directory
 ~~~
 pi@raspberrypi:~ $ cat .asoundrc
 				
@@ -116,18 +116,18 @@ pi@raspberrypi:~ $ cat .asoundrc
 				     device "D0:8A:55:08:FC:BE" # <-- the headset that supports A2DP!
 				     profile "a2dp"
 ~~~
-	WEEEEEEEEEEEEEEEEEEEEEEEEEE!
+WEEEEEEEEEEEEEEEEEEEEEEEEEE!
 	
 	
 ### TODO
-		a. Now let's figure out why omxplayer STOPs the audio if I fast forward through the video
-		b. What are the various options in .asoundrc ?
-		c. How can I make omxplayer resilient to turning off the headphones (it seems to crash/hang when I do so)
+	a. Now let's figure out why omxplayer STOPs the audio if I fast forward through the video
+	b. What are the various options in .asoundrc ?
+	c. How can I make omxplayer resilient to turning off the headphones (it seems to crash/hang when I do so)
 		
 
 ### May 16, 2020
-	Mount the external hard drive mount /dev/sda1 /mnt
-	Copy the media files : I learned to use "rsync" to copy folders
+Mount the external hard drive mount /dev/sda1 /mnt
+Copy the media files : I learned to use "rsync" to copy folders
 
 cp -rvn /mnt/Videos/Downloads/Frasier/ ./vids/Frasier/
 
