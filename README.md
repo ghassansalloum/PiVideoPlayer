@@ -75,11 +75,11 @@ bluetoothd with a2dp plugin
 There is a a2dp plugin for our bluetooth agent. So we'll change the services' ExecStart parameter like so:
 
 ~~~	
-		sudo nano /etc/systemd/system/bluetooth.target.wants/bluetooth.service
-		
-		#And while we're here we'll disable sap since this may cause some errors:
-		
-		ExecStart=/usr/lib/bluetooth/bluetoothd --noplugin=sap --plugin=a2dp
+sudo nano /etc/systemd/system/bluetooth.target.wants/bluetooth.service
+	
+#And while we're here we'll disable sap since this may cause some errors:
+	
+ExecStart=/usr/lib/bluetooth/bluetoothd --noplugin=sap --plugin=a2dp
 ~~~	
 
 Not sure if this was necessary by the way. I'd like to remove this a2dp configuration and see if it still works.
@@ -99,17 +99,17 @@ And I had a corresponding profile in the .asoundrc file in my home directory
 ~~~
 pi@raspberrypi:~ $ cat .asoundrc
 				
-				#defaults.bluealsa.service "org.bluealsa"
-				#defaults.bluealsa.profile "a2dp"
-				#defaults.bluealsa.delay 10000
+#defaults.bluealsa.service "org.bluealsa"
+#defaults.bluealsa.profile "a2dp"
+#defaults.bluealsa.delay 10000
 				
-				# Bluetooth headset
-				defaults.bluealsa {
-				     interface "hci0"            # host Bluetooth adapter
-				     #device "10:4F:A8:00:11:22"  # Bluetooth headset MAC address
-				     # device "AA:00:A7:00:B8:D4" Vidonn
-				     device "D0:8A:55:08:FC:BE" # <-- the headset that supports A2DP!
-				     profile "a2dp"
+# Bluetooth headset
+defaults.bluealsa {
+     interface "hci0"            # host Bluetooth adapter
+     #device "10:4F:A8:00:11:22"  # Bluetooth headset MAC address
+     # device "AA:00:A7:00:B8:D4" Vidonn
+     device "D0:8A:55:08:FC:BE" # <-- the headset that supports A2DP!
+     profile "a2dp"
 ~~~
 WEEEEEEEEEEEEEEEEEEEEEEEEEE!
 	
