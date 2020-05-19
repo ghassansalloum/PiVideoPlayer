@@ -118,14 +118,23 @@ pi@raspberrypi:~ $ cat .asoundrc
 ~~~
 WEEEEEEEEEEEEEEEEEEEEEEEEEE!
 	
-	
-### May 16, 2020
-Mount the external hard drive mount /dev/sda1 /mnt
-Copy the media files : I learned to use "rsync" to copy folders
+## The video playing part
 
-cp -rvn /mnt/Videos/Downloads/Frasier/ ./vids/Frasier/
+## Get a command line video player application.
 
-## Which version of Raspbian
+I am using omxplayer
+> sudo apt-get install omxplayer
+
+Others that I know of but I haven't tried: vlc (may need X server), mplayer
+
+## Copy the the media files
+I have them on an external hard drive.
+* Mount the external hard drive mount /dev/sda1 /mnt
+* Copy the media files : I learned to use "rsync" to copy folders. For example:
+> cp -rvn /mnt/Videos/Downloads/Frasier/ ./vids/Frasier/
+* I used scp (file copy over SSH) from a Windows machine, but using rsync is more convenient.
+
+## The version of Raspbian I'm running on the Pi Zero W
 ~~~
 pi@raspberrypizero:~ $ cat /etc/os-release
 PRETTY_NAME="Raspbian GNU/Linux 10 (buster)"
@@ -141,7 +150,7 @@ BUG_REPORT_URL="http://www.raspbian.org/RaspbianBugs"
 ~~~
 
 ## Pending work overall
-### May 19
+
 A couple of days of break from the project and re-assess the next steps. This is the list of items that are still needed:
 * A box
 * A portable power supply solution
