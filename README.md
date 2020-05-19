@@ -151,5 +151,5 @@ A couple of days of break from the project and re-assess the next steps. This is
 * Address the too-fast playback glitch that happens occasionally on the Fra vids, and almost constantly on Sei vids.
 * Clear the display on the terminal view that shows in the tiny screen. Maybe even turn off the LCD between video plays.
 * General stability:
-  ** Now let's figure out why omxplayer STOPs the audio if I fast forward through the video
-  ** How can I make omxplayer resilient to turning off the headphones (it seems to crash/hang when I do so)
+  * Now let's figure out why omxplayer STOPs the audio if I fast forward through the video
+  * How can I make omxplayer resilient to turning off the headphones (it seems to crash/hang when I do so)
