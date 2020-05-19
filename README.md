@@ -115,14 +115,14 @@ WEEEEEEEEEEEEEEEEEEEEEEEEEE!
 	
 ## The video playing part
 
-## Get a command line video player application.
+### Get a command line video player application.
 
 I am using omxplayer
 > sudo apt-get install omxplayer
 
 Others that I know of but I haven't tried: vlc (may need X server), mplayer
 
-## Copy the the media files
+### Copy the the media files
 I have them on an external hard drive.
 * Mount the external hard drive mount /dev/sda1 /mnt
 * Copy the media files : I learned to use "rsync" to copy folders. For example:
