@@ -145,3 +145,14 @@ HOME_URL="http://www.raspbian.org/"
 SUPPORT_URL="http://www.raspbian.org/RaspbianForums"
 BUG_REPORT_URL="http://www.raspbian.org/RaspbianBugs"
 ~~~
+
+
+### May 19
+A couple of days of break from the project and re-assess the next steps. This is the list of items that are still needed:
+* A box
+* A portable power supply solution
+* A way for the system to shutdown gracefully if the power is about to get lost
+* A way for omxplayer to play audio to both the HDMI device and the bluetooth device (two -o parameters?)
+* A way to play to the bluetooth device that's connected, and support (play with the .asoundrc or /etc/asound.conf configs?) more than one? or explore passing a -o parameter to each paired bluetooth device?
+* Address the too-fast playback glitch that happens occasionally on the Fra vids, and almost constantly on Sei vids.
+* Clear the display on the terminal view that shows in the tiny screen. Maybe even turn off the LCD between video plays.
