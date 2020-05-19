@@ -119,12 +119,6 @@ pi@raspberrypi:~ $ cat .asoundrc
 WEEEEEEEEEEEEEEEEEEEEEEEEEE!
 	
 	
-### TODO
-	a. Now let's figure out why omxplayer STOPs the audio if I fast forward through the video
-	b. What are the various options in .asoundrc ?
-	c. How can I make omxplayer resilient to turning off the headphones (it seems to crash/hang when I do so)
-		
-
 ### May 16, 2020
 Mount the external hard drive mount /dev/sda1 /mnt
 Copy the media files : I learned to use "rsync" to copy folders
@@ -146,7 +140,7 @@ SUPPORT_URL="http://www.raspbian.org/RaspbianForums"
 BUG_REPORT_URL="http://www.raspbian.org/RaspbianBugs"
 ~~~
 
-
+## Pending work overall
 ### May 19
 A couple of days of break from the project and re-assess the next steps. This is the list of items that are still needed:
 * A box
@@ -156,3 +150,6 @@ A couple of days of break from the project and re-assess the next steps. This is
 * A way to play to the bluetooth device that's connected, and support (play with the .asoundrc or /etc/asound.conf configs?) more than one? or explore passing a -o parameter to each paired bluetooth device?
 * Address the too-fast playback glitch that happens occasionally on the Fra vids, and almost constantly on Sei vids.
 * Clear the display on the terminal view that shows in the tiny screen. Maybe even turn off the LCD between video plays.
+* General stability:
+  ** Now let's figure out why omxplayer STOPs the audio if I fast forward through the video
+  ** How can I make omxplayer resilient to turning off the headphones (it seems to crash/hang when I do so)
