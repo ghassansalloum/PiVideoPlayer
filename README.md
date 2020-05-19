@@ -7,14 +7,7 @@ Start by configuring the LCD screen, then the set up the bluetooth connection, t
 ## LCD IPS 1.3" HAT
 
 How to compile the 1.3" TFT LCD driver IPS HAT (with a joystick and 2 buttons)
-from GitHub - [juj/fbcp-ili9341](https://github.com/juj/fbcp-ili9341): A blazing fast display driver for SPI-based LCD displays for Raspberry
-
-
-~~~
-cmake -DDMA_RX_CHANNEL=5 -DUSE_DMA_TRANSFERS=ON -DSPI_BUS_CLOCK_DIVISOR=6 -DWAVESHARE_ST7789VW_HAT=ON -DSTATISTICS=0 -DDISPLAY_ROTATE_180_DEGREES=ON ..
-~~~
-
-I tried DMA channel 10, it complained that it cant use a "lite" channel, and recommended that I use something <7, so I went with 5 and that seems to have made it work!
+from GitHub - [juj/fbcp-ili9341](https://github.com/juj/fbcp-ili9341): A blazing fast display driver for SPI-based LCD displays for Raspberry Pi
 
 ~~~python
 cd ~
@@ -27,13 +20,14 @@ cmake -DDMA_RX_CHANNEL=5 -DUSE_DMA_TRANSFERS=ON -DSPI_BUS_CLOCK_DIVISOR=6 -DWAVE
 make -j
 sudo ./fbcp-ili9341
 ~~~	
-
 From <https://github.com/juj/fbcp-ili9341> 
 
+I tried DMA channel 10, it complained that it cant use a "lite" channel, and recommended that I use something <7, so I went with 5 and that seems to have made it work!
+
+
+
 Then add a line in ---/etc/rc.local--- to load the driver at boot time:
-~~~
-sudo /home/pi/fbcp-ili9341/build/fbcp-ili9341 &
-~~~
+> sudo /home/pi/fbcp-ili9341/build/fbcp-ili9341 &
 
 ## Bluetooth
 ### May 12
@@ -46,7 +40,7 @@ Pair XX:XX:XX
 Trust XX:XX:XX
 Connect XX:XX:XX:X
 ~~~
-It paired, and got trusted
+It paired, and got trusted (trusted means that it will automatically connect to it when it's detected)
 Some issues connecting. 
 I found a page that recommentded running pactl… That didn't work. (i turns out I don't need PulseAudio on the most recent version of Raspbian)
 It's not clear whether the Pi Zero W that I have already has the libraries or I have to apt-get new ones.
@@ -73,13 +67,13 @@ Done.
 ~~~			
 And logout/login again
 Now install the BlueAlsa proxy (I don’t know what 'proxy' refers to - yet)
-~~~
-sudo apt-get install bluealsa
-~~~	
+
+> sudo apt-get install bluealsa
 	
-	Did this 
-	bluetoothd with a2dp plugin
-	There is a a2dp plugin for our bluetooth agent. So we'll change the services' ExecStart parameter like so:
+Did this 
+bluetoothd with a2dp plugin
+There is a a2dp plugin for our bluetooth agent. So we'll change the services' ExecStart parameter like so:
+
 ~~~	
 		sudo nano /etc/systemd/system/bluetooth.target.wants/bluetooth.service
 		
@@ -87,6 +81,7 @@ sudo apt-get install bluealsa
 		
 		ExecStart=/usr/lib/bluetooth/bluetoothd --noplugin=sap --plugin=a2dp
 ~~~	
+
 Not sure if this was necessary by the way. I'd like to remove this a2dp configuration and see if it still works.
 	
 1:20 AM - MADE IT WORRRRKKKKKKKKKKKKKKKKKKKKKKK
