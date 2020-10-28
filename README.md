@@ -133,7 +133,7 @@ Others that I know of but I haven't tried: vlc (may need X server), mplayer
 I have them on an external hard drive.
 * Mount the external hard drive mount /dev/sda1 /mnt
 * Copy the media files : I learned to use "rsync" to copy folders. For example:
-> cp -rvn /mnt/Videos/Downloads/Frasier/ ./vids/Frasier/
+> cp -rvn /mnt/Videos/GoneWithTheWindSeries/ ./vids/GoneWithTheWindSeries/
 * I used scp (file copy over SSH) from a Windows machine, but using rsync is more convenient.
 
 ## The version of Raspbian I'm running on the Pi Zero W
