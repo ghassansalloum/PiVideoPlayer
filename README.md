@@ -136,7 +136,7 @@ I have them on an external hard drive.
 > cp -rvn /mnt/Videos/GoneWithTheWindSeries/ ./vids/GoneWithTheWindSeries/
 * I used scp (file copy over SSH) from a Windows machine, but using rsync is more convenient.
 
-### Cron job monitoring the physical buttons
+### Cron job monitoring the physical buttons of the LCD HAT.
 <todo>
 * Key 1: play random file from the first folder
 * Key 2: stop the video that's playing
