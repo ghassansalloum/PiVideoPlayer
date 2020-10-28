@@ -136,6 +136,15 @@ I have them on an external hard drive.
 > cp -rvn /mnt/Videos/GoneWithTheWindSeries/ ./vids/GoneWithTheWindSeries/
 * I used scp (file copy over SSH) from a Windows machine, but using rsync is more convenient.
 
+### Cron job monitoring the physical buttons
+<todo>
+* Key 1: play random file from the first folder
+* Key 2: stop the video that's playing
+* Key 3: play random file from the second folder
+* Joystick-right: Skip 10 seconds forward
+* Joystick-left: Rewind 10 seconds
+* Joystick push: shutdown
+
 ## The version of Raspbian I'm running on the Pi Zero W
 ~~~
 pi@raspberrypizero:~ $ cat /etc/os-release
