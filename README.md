@@ -48,6 +48,7 @@ Pair XX:XX:XX
 Trust XX:XX:XX
 Connect XX:XX:XX:X
 ~~~
+Replace the XX:XX:XX with the value for your bluetooth speaker or headphones. You can see them in the output of the 'scan' command above.
 It paired, and got trusted (trusted means that it will automatically connect to it when it's detected)
 Some issues connecting. 
 I found a page that recommentded running pactl… That didn't work. (i turns out I don't need PulseAudio on the most recent version of Raspbian)
