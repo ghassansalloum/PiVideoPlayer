@@ -5,7 +5,8 @@ Raspberry Pi Zero W + LCD HAT video player + Bluetooth audio
 * The LCD IPS 1.3" HAT is this one from [Waveshare](https://www.waveshare.com/1.3inch-lcd-hat.htm). Buy it on [Amazon](https://www.amazon.com/interface-Embedded-Controller-Compatible-Raspberry/dp/B07FDQVYFM).
 
 The high level structure of this project is:
-1. Start by configuring the LCD screen
+0. Install the latest Raspbian image on the SD card for the Raspberry Pi 
+1. Configure the LCD screen
 2. Set up the bluetooth connection (it turns out to be tricky on Linux!)
 3. Set up the video controller and player code that takes advantage of it all, and load the video files on the device.
 
