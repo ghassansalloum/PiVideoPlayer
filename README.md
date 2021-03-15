@@ -139,7 +139,38 @@ I have them on an external hard drive.
 * I used scp (file copy over SSH) from a Windows machine, but using rsync is more convenient.
 
 ### Cron job monitoring the physical buttons of the LCD HAT.
-See player.py script file.
+See player.py script file for the code that makes the application work.
+
+Run
+>sudo nano /etc/rc.local
+
+and include this:
+~~~
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+# Print the IP address
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  printf "My IP address is %s\n" "$_IP"
+fi
+
+sudo /home/pi/fbcp-ili9341/build/fbcp-ili9341 &
+/home/pi/player.py
+
+exit 0
+
+~~~
 
 ## The version of Raspbian I'm running on the Pi Zero W
 ~~~
