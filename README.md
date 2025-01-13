@@ -187,6 +187,27 @@ SUPPORT_URL="http://www.raspbian.org/RaspbianForums"
 BUG_REPORT_URL="http://www.raspbian.org/RaspbianBugs"
 ~~~
 
+
+## the MAC addresses of my Bluetooth speakers and headsets
+pcm.!default {
+	type plug
+	slave {
+		pcm {
+			type bluealsa
+			device "30:21:31:55:D8:B8" # Boxanne
+			profile "a2dp"
+		}
+	}
+	hint {
+		show on
+		description "Boxanne Red Speaker"
+	}
+	
+}
+
+
+
+
 ## Pending work overall
 
 A couple of days of break from the project and re-assess the next steps. This is the list of items that are still needed:
