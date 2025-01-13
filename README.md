@@ -189,6 +189,9 @@ BUG_REPORT_URL="http://www.raspbian.org/RaspbianBugs"
 
 
 ## the MAC addresses of my Bluetooth speakers and headsets
+found in /etc/asound.conf
+
+~~~
 pcm.!default {
 	type plug
 	slave {
@@ -205,7 +208,7 @@ pcm.!default {
 	
 }
 
-
+~~~
 
 
 ## Pending work overall
