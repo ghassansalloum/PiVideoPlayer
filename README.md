@@ -19,5 +19,9 @@ It ran on RPi Buster, with a Waveshare 1.3" LCD HAT, using omxplayer to play the
 It ran for a few years, with some known issues documented in [the old README](Old-README-2020.md) file
 
 # Major components:
-- Bookworm + vlc + pipewire + pipewire-pulse.
+- Bookworm
+- VLC (I tried mplayer, it didn't work)
+- pipewire + pipewire-pulse (they both installed flawlessly on Bookworm, unlike Bullseye). The current version of pipewire finally works with Airplay.
 - A script to set the desired default speaker on the system. See [default speaker.md](default%20%speaker.md) for details.
+- A node-red flow that handles the hardware buttons and constitutes the bulk of the user experience.
+- A set of video files from your favorite TV shows.
