@@ -3,7 +3,14 @@ Here is a concise plan to make an Airplay speaker the default sink persistently 
 # System assumption
 This works on a Raspberry Pi running Bookworm, with pipewire and pipewire-pulse and pa-utils installed.
 
-Plan
+# Get the list of available audio sinks and pick the one you want
+```pactl list short sinks```
+
+The Airplay speakers have this format: 
+```
+50	raop_sink.Sonos-F0F6C1D86672.local.192.168.111.166.7000	PipeWire	s16le 2ch 44100Hz	SUSPENDED
+52	raop_sink.Sonos-347E5CF63B9A.local.192.168.111.125.7000	PipeWire	s16le 2ch 44100Hz	SUSPENDED
+```
 
 # Create a Script to Set the Default Sink
 
