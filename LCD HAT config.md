@@ -22,14 +22,33 @@ sudo ./fbcp-ili9341
 Go to ```sudo nano /boot/firmware/config.txt```
 and add this:
 ```
+hdmi_force_hotplug=1
+hdmi_group=2
+hdmi_mode=87
+hdmi_cvt=240 240 60 1 0 0 0
 ```
 and comment out ```dtoverlay=vc4-kms-v3d``` ( I believe teh driver dev wants all ```dtoverlay``` lines commented out )
+This will make the HDMI connection stop working.
 
 # Enable the SPI interface
 
 ```sudo raspi-config```
 Go to the Interface options.
 
-# Install fbi for quick tests
+# Do quick tests
+
+```cat /dev/random > /dev/fb0```
+You should see noise on the small screen
+
+Fbi is a quick image viewer
+```sudo apt install fbi```
+
+Get an image from the web
+```cd ~
+wget https://i.pinimg.com/originals/51/26/d3/5126d3a1f2ef917b584d83c86fda95e6.jpg -O mj.jpg
+sudo fbi -T 1 -d /dev/fb0 -noverbose --autozoom mj.jpg
+```
+If you see an image, the driver is working. The next step is installing the video player.
+
 
 # Configure for reboots
