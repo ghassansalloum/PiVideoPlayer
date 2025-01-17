@@ -3,6 +3,12 @@ Here is a concise plan to make an Airplay speaker the default sink persistently 
 # System assumption
 This works on a Raspberry Pi running Bookworm, with pipewire and pipewire-pulse and pa-utils installed.
 
+```
+sudo apt install pipewire pipewire-pulse pulseaudio-utils
+```
+
+You don't need PulseAudio itself. But the utilities in pulseaudio-utils will work with Pipewire.
+
 # Make sure the RAOP module is loaded in pipewire
 
 Create a pipewire.conf for the user if you want
@@ -28,7 +34,9 @@ systemctl --user restart pipewire
 ```
 
 # Get the list of available audio sinks and pick the one you want
-```pactl list short sinks```
+```
+pactl list short sinks
+```
 
 The Airplay speakers have this format: 
 ```
@@ -49,7 +57,10 @@ Add these two lines:
 pactl set-default-sink 'raop_sink.Sonos-38420B94B684.local.192.168.111.114.7000'
 ```
 
-Make it executable:  ```chmod +x ~/.config/set-default-sink.sh```
+Make it executable:  
+```
+chmod +x ~/.config/set-default-sink.sh
+```
 
 # Create and configure a Systemd Service
 
@@ -81,16 +92,29 @@ WantedBy=default.target
 ```
 
 # Enable and Start the Service
-Reload systemd for the user services: ```systemctl --user daemon-reload```
-
-Enable the service: ```systemctl --user enable set-default-sink.service```
-
-Start the service: ```systemctl --user start set-default-sink.service```
+Reload systemd for the user services, and enable the new service and start it 
+```
+systemctl --user daemon-reload
+systemctl --user enable set-default-sink.service
+systemctl --user start set-default-sink.service
+```
 # Allow the Service to Run Without User Login
-Enable lingering for the user: ```sudo loginctl enable-linger $USER```
+Enable lingering for the user: 
+```
+sudo loginctl enable-linger $USER
+```
 # Test and Verify
-Reboot the system or restart PipeWire: ```systemctl --user restart pipewire.service```
+Reboot the system or restart PipeWire: 
+```
+systemctl --user restart pipewire.service
+```
 
-Confirm the default sink: ```pactl get-default-sink```
-
+Confirm the default sink: 
+```
+pactl get-default-sink
+```
+Play a test file:
+```
+paplay /usr/share/sounds/alsa/Noise.wav
+```
 This setup ensures the default sink is set on every boot and after any PipeWire restart, without requiring the user to log in.
