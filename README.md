@@ -24,5 +24,10 @@ It ran for a few years, with some known issues documented in [the old README](Ol
 - The fbcp driver to drive the LCD HAT display. See [Instructions for the LCD HAT](LCD%20%HAT%20%config.md)
 - pipewire + pipewire-pulse (they both installed flawlessly on Bookworm, unlike Bullseye). The current version of pipewire finally works with Airplay.
 - A script to set the desired default speaker on the system. See [default speaker.md](default%20%speaker.md) for details.
+- Test with VLC:
+```
+cvlc --no-video --file-caching=5000 --network-caching=10000 sample.mp4
+```
+Does the audio work? Does the video work?
 - A node-red flow that handles the hardware buttons and constitutes the bulk of the user experience.
 - A set of video files from your favorite TV shows.
