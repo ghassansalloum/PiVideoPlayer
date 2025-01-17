@@ -21,6 +21,7 @@ It ran for a few years, with some known issues documented in [the old README](Ol
 # Major components:
 - Bookworm (32-bit, because 64-bit is not supported by the fbcb driver I'm using)
 - VLC (I tried mplayer, it didn't work)
+- The fbcp driver to drive the LCD HAT display. See [Instructions for the LCD HAT](LCD%20%HAT%20%config.md)
 - pipewire + pipewire-pulse (they both installed flawlessly on Bookworm, unlike Bullseye). The current version of pipewire finally works with Airplay.
 - A script to set the desired default speaker on the system. See [default speaker.md](default%20%speaker.md) for details.
 - A node-red flow that handles the hardware buttons and constitutes the bulk of the user experience.
