@@ -32,16 +32,22 @@ This will make the HDMI connection stop working.
 
 # Enable the SPI interface
 
-```sudo raspi-config```
+```
+sudo raspi-config
+```
 Go to the Interface options.
 
 # Do quick tests
 
-```cat /dev/random > /dev/fb0```
+```
+cat /dev/random > /dev/fb0
+```
 You should see noise on the small screen
 
 Fbi is a quick image viewer
-```sudo apt install fbi```
+```
+sudo apt install fbi
+```
 
 Get an image from the web
 ```cd ~
