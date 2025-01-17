@@ -6,7 +6,7 @@ It should work on a Raspberry Pi with an LCD HAT installed.
 My current attempt is to make it work on a system with the following specs:
 - Raspberry Pi Zero W V1.1
 - Waveshare LCD 1.3" HAT
-- OS Relase: Bookworm
+- OS Relase: Bookworm (ONLY **32-bit** is SUPPORTED by the fbcb DRIVER)
 - Video player: VLC
 - Audio server: pipewire (+ pipewire-pulse)
 - Speaker: SONOS speaker capable of Airplay
@@ -19,7 +19,7 @@ It ran on RPi Buster, with a Waveshare 1.3" LCD HAT, using omxplayer to play the
 It ran for a few years, with some known issues documented in [the old README](Old-README-2020.md) file
 
 # Major components:
-- Bookworm
+- Bookworm (32-bit, because 64-bit is not supported by the fbcb driver I'm using)
 - VLC (I tried mplayer, it didn't work)
 - pipewire + pipewire-pulse (they both installed flawlessly on Bookworm, unlike Bullseye). The current version of pipewire finally works with Airplay.
 - A script to set the desired default speaker on the system. See [default speaker.md](default%20%speaker.md) for details.
