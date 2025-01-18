@@ -58,3 +58,9 @@ If you see an image, the driver is working. The next step is installing the vide
 
 
 # Configure for reboots
+Copy the driver to a more permanent location, and invoke it from rc.local when rebooting
+```
+sudo cp ~/fbcp-ili9341/build/fbcp-ili9341 /usr/local/lib/fbcp
+sudo nano /etc/rc.local
+```
+
