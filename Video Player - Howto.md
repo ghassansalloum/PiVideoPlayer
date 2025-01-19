@@ -9,7 +9,9 @@ This is a more indirect way to play the video. I created it in the process of de
 how interacting with the framebuffer truly works.
 
 Create the script that plays the video.
-(script goes here)
+```nano videoplayer.py```
+
+and use this script [videplayer.py](videplayer.py)
   
 Create a service to manage the script and load it after a reboot. This will create it for all users:
 ```
