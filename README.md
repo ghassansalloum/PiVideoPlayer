@@ -25,14 +25,5 @@ It ran for a few years, with some known issues documented in [the old README](Ol
 - pipewire + pipewire-pulse (they both installed flawlessly on Bookworm, unlike Bullseye). The current version of pipewire finally works with Airplay.
 - A script to set the desired default speaker on the system. See [default speaker.md](default%20%speaker.md) for details.
 - Set up the video player using [Video Player - Howto](Video%20%Player%20%-%20%Howto.md)
-- Test with VLC:
-```
-cvlc --file-caching=5000 --network-caching=10000 --no-fb-tty --vout fb --fbdev=/dev/fb0 sample.mp4
-```
---no-fb-tty is necessary when using a terminal (especially over ssh).
-
-Adjust the fbdev value to match your framebuffer.
-
-Does the audio work? Does the video work?
-- A node-red flow that handles the hardware buttons and constitutes the bulk of the user experience.
+- A node-red flow that handles the hardware buttons and constitutes the bulk of the user control experience.
 - A set of video files from your favorite TV shows.
