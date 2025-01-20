@@ -1,42 +1,886 @@
 [
     {
-        "id": "cdf2ab2f85071871",
+        "id": "abad9a88ca0d6f8d",
         "type": "tab",
-        "label": "Prod",
+        "label": "NEW and working?",
         "disabled": false,
         "info": "",
         "env": []
     },
     {
-        "id": "8c1b93a95e47f620",
-        "type": "tab",
-        "label": "Dev",
-        "disabled": false,
-        "info": "",
-        "env": []
+        "id": "84c542040034d2c2",
+        "type": "group",
+        "z": "abad9a88ca0d6f8d",
+        "name": "Emit name of chosen episode - for Home Assistant's dashboard",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "f3ed82aa14152584",
+            "5fce7e5dd9224f2c",
+            "614515168d71178a",
+            "596391fe7b3f5847",
+            "a2eff87653e53d73"
+        ],
+        "x": 654,
+        "y": 159,
+        "w": 432,
+        "h": 202
     },
     {
-        "id": "72f5c05c727aab0b",
-        "type": "tab",
-        "label": "OLD but worked",
-        "disabled": false,
-        "info": "",
-        "env": []
+        "id": "50f3b47b1d62d456",
+        "type": "group",
+        "z": "abad9a88ca0d6f8d",
+        "name": "Pick random episode when invoked",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "function_pick_random",
+            "69199788a63ffebd",
+            "d07147c9e3559671",
+            "64a778f5f842ccab",
+            "39ccc8c63aaea7fd",
+            "7780ca1ff63e28f2",
+            "inject_pick_random",
+            "01850a0e7c90f579",
+            "b8fb5788d174801a"
+        ],
+        "x": 14,
+        "y": 139,
+        "w": 612,
+        "h": 222
     },
     {
-        "id": "8ac09457512cbd8e",
-        "type": "tab",
-        "label": "OLD - Dev",
-        "disabled": false,
-        "info": "",
-        "env": []
+        "id": "7af0599b75ce96bf",
+        "type": "group",
+        "z": "abad9a88ca0d6f8d",
+        "name": "Play the chosen video",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "0ee5394a19ec2f9d",
+            "fa0416a1027484fb",
+            "10292665f314fc6c",
+            "0bdf25ad2db8b823",
+            "a9237caf8c926fae"
+        ],
+        "x": 14,
+        "y": 371.5,
+        "w": 612,
+        "h": 149.5
     },
     {
-        "id": "f1a1bbee8a34c861",
-        "type": "tab",
-        "label": "Video Player Control",
-        "disabled": false,
-        "info": ""
+        "id": "9aa3ae0427508409",
+        "type": "group",
+        "z": "abad9a88ca0d6f8d",
+        "name": "Init",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "inject_list_files",
+            "exec_list_files",
+            "function_assign_global",
+            "debug_list_files"
+        ],
+        "x": 14,
+        "y": 31.5,
+        "w": 792,
+        "h": 97
+    },
+    {
+        "id": "ff624337f71e6c66",
+        "type": "group",
+        "z": "abad9a88ca0d6f8d",
+        "name": "Stop video - pkill",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "49232eca1c1b13cc",
+            "92bcad8254dbf885",
+            "751d51dfcded41f7",
+            "9e34b4a2c405b0b6",
+            "01dbddaf82aed932",
+            "f4e3f433d82ec260"
+        ],
+        "x": 14,
+        "y": 539,
+        "w": 612,
+        "h": 162
+    },
+    {
+        "id": "8e0e14a4a8ae4da8",
+        "type": "group",
+        "z": "abad9a88ca0d6f8d",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "46541e988de47929",
+            "3a1639b38e613dbb",
+            "67678a223dc5bf97",
+            "332bb8d08ca5a6d5",
+            "a34c56cbb99ba96c"
+        ],
+        "x": 14,
+        "y": 719,
+        "w": 422,
+        "h": 182
+    },
+    {
+        "id": "inject_list_files",
+        "type": "inject",
+        "z": "abad9a88ca0d6f8d",
+        "g": "9aa3ae0427508409",
+        "name": "List Files",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 80,
+        "wires": [
+            [
+                "exec_list_files"
+            ]
+        ]
+    },
+    {
+        "id": "exec_list_files",
+        "type": "exec",
+        "z": "abad9a88ca0d6f8d",
+        "g": "9aa3ae0427508409",
+        "command": "find /home/pi/vids/ -maxdepth 1 -type f -iname \"s*\"",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "find",
+        "x": 270,
+        "y": 80,
+        "wires": [
+            [
+                "function_assign_global"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "function_assign_global",
+        "type": "function",
+        "z": "abad9a88ca0d6f8d",
+        "g": "9aa3ae0427508409",
+        "name": "Assign to Global Array",
+        "func": "// Initialize an empty array to store file paths\nlet filePaths = [];\n\n// Check if the exec node returned stdout\nif (msg.payload) {\n    // Split the stdout by newlines to get individual file paths\n    filePaths = msg.payload.split('\\n').filter(line => line.trim() !== '');\n}\n\n// Assign the array to a global context variable\nglobal.set('filePaths', filePaths);\n\n// Optionally, you can pass a confirmation message\nmsg.payload = `Found ${filePaths.length} files.`;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 80,
+        "wires": [
+            [
+                "debug_list_files"
+            ]
+        ]
+    },
+    {
+        "id": "debug_list_files",
+        "type": "debug",
+        "z": "abad9a88ca0d6f8d",
+        "g": "9aa3ae0427508409",
+        "name": "List Files Debug",
+        "active": true,
+        "tosidebar": false,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 680,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "function_pick_random",
+        "type": "function",
+        "z": "abad9a88ca0d6f8d",
+        "g": "50f3b47b1d62d456",
+        "name": "Pick @random",
+        "func": "// Retrieve the global array of file paths\nlet filePaths = global.get('filePaths');\n\n// Check if the array exists and has elements\nif (Array.isArray(filePaths) && filePaths.length > 0) {\n    // Generate a random index\n    let randomIndex = Math.floor(Math.random() * filePaths.length);\n\n    // Get the random file path\n    let randomFile = filePaths[randomIndex];\n\n    // Escape the file path or wrap it in quotes for safe usage in the command line\n    let escapedFilePath = `\"${randomFile.replace(/([\"\\\\$`])/g, '\\\\$1')}\"`;\n\n    // Assign it to msg.payload\n    msg.VideoToPlay = [escapedFilePath, null];\n} else {\n    // Handle the case where the array is empty or undefined\n    msg.VideoToPlay = [null, 'No files available to pick.'];\n}\n\nreturn msg;\n",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 260,
+        "wires": [
+            [
+                "5fce7e5dd9224f2c",
+                "b8fb5788d174801a"
+            ],
+            [
+                "01850a0e7c90f579"
+            ]
+        ]
+    },
+    {
+        "id": "69199788a63ffebd",
+        "type": "rpi-gpio in",
+        "z": "abad9a88ca0d6f8d",
+        "g": "50f3b47b1d62d456",
+        "name": "Key 1",
+        "pin": "21",
+        "intype": "up",
+        "debounce": "25",
+        "read": false,
+        "bcm": true,
+        "x": 110,
+        "y": 260,
+        "wires": [
+            [
+                "d07147c9e3559671"
+            ]
+        ]
+    },
+    {
+        "id": "d07147c9e3559671",
+        "type": "delay",
+        "z": "abad9a88ca0d6f8d",
+        "g": "50f3b47b1d62d456",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 290,
+        "y": 260,
+        "wires": [
+            [
+                "function_pick_random"
+            ]
+        ]
+    },
+    {
+        "id": "64a778f5f842ccab",
+        "type": "comment",
+        "z": "abad9a88ca0d6f8d",
+        "g": "50f3b47b1d62d456",
+        "name": "Play Frasier",
+        "info": "This is the routine to play a Frasier episode when pressing Key 1",
+        "x": 130,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "39ccc8c63aaea7fd",
+        "type": "mqtt in",
+        "z": "abad9a88ca0d6f8d",
+        "g": "50f3b47b1d62d456",
+        "name": "1",
+        "topic": "frasier",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "7ad2277394b478ef",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 90,
+        "y": 320,
+        "wires": [
+            [
+                "7780ca1ff63e28f2"
+            ]
+        ]
+    },
+    {
+        "id": "7780ca1ff63e28f2",
+        "type": "switch",
+        "z": "abad9a88ca0d6f8d",
+        "g": "50f3b47b1d62d456",
+        "name": "if 'play'",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "play",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 220,
+        "y": 320,
+        "wires": [
+            [
+                "d07147c9e3559671"
+            ]
+        ]
+    },
+    {
+        "id": "inject_pick_random",
+        "type": "inject",
+        "z": "abad9a88ca0d6f8d",
+        "g": "50f3b47b1d62d456",
+        "name": "Pick Random File",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 220,
+        "wires": [
+            [
+                "d07147c9e3559671"
+            ]
+        ]
+    },
+    {
+        "id": "0ee5394a19ec2f9d",
+        "type": "exec",
+        "z": "abad9a88ca0d6f8d",
+        "g": "7af0599b75ce96bf",
+        "command": "pkill vlc; pkill python3",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Kill player procs",
+        "x": 180,
+        "y": 420,
+        "wires": [
+            [
+                "fa0416a1027484fb",
+                "10292665f314fc6c"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "f3ed82aa14152584",
+        "type": "mqtt out",
+        "z": "abad9a88ca0d6f8d",
+        "g": "84c542040034d2c2",
+        "name": "",
+        "topic": "LastFrasierEpisode",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "7ad2277394b478ef",
+        "x": 970,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "5fce7e5dd9224f2c",
+        "type": "change",
+        "z": "abad9a88ca0d6f8d",
+        "g": "84c542040034d2c2",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "VideoToPlay[0]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 200,
+        "wires": [
+            [
+                "614515168d71178a"
+            ]
+        ]
+    },
+    {
+        "id": "614515168d71178a",
+        "type": "change",
+        "z": "abad9a88ca0d6f8d",
+        "g": "84c542040034d2c2",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "/home/pi/vids/Frasier/",
+                "fromt": "str",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": ".avi",
+                "fromt": "str",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": ".mkv",
+                "fromt": "str",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "\"",
+                "fromt": "str",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 960,
+        "y": 200,
+        "wires": [
+            [
+                "596391fe7b3f5847"
+            ]
+        ]
+    },
+    {
+        "id": "596391fe7b3f5847",
+        "type": "function",
+        "z": "abad9a88ca0d6f8d",
+        "g": "84c542040034d2c2",
+        "name": "Parse data",
+        "func": "// Use a regular expression to split the payload on the first dash, with or without surrounding spaces\nlet parts = msg.payload.split(/ - |-(?!.* - )/);\n\n// Initialize an object to hold the extracted values\nlet result = {\n    season: \"\",\n    episode: \"\",\n    title: \"\"\n};\n\nif (parts.length >= 2) {\n    // The first part before the dash is assumed to be 'SxxExx'\n    let seasonEpisode = parts[0];\n    // Attempt to further split season and episode\n    let seasonEpisodeParts = seasonEpisode.match(/S(\\d+)E(\\d+)/i);\n    if (seasonEpisodeParts && seasonEpisodeParts.length === 3) {\n        result.season = seasonEpisodeParts[1];\n        result.episode = seasonEpisodeParts[2];\n    } else {\n        // Handle cases where the season/episode format doesn't match\n        result.season = \"Unknown\";\n        result.episode = \"Unknown\";\n    }\n\n    // Everything after the dash is the title\n    result.title = parts.slice(1).join(' - ').trim();\n} else {\n    // In case the string doesn't properly split, set a default or handle as error\n    result.title = \"Invalid format - \" + msg.payload;\n}\n\n// Assign the result object to msg.payload\nmsg.payload = result;\n\n// Return the message object to continue the flow\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 260,
+        "wires": [
+            [
+                "f3ed82aa14152584",
+                "a2eff87653e53d73"
+            ]
+        ]
+    },
+    {
+        "id": "a2eff87653e53d73",
+        "type": "debug",
+        "z": "abad9a88ca0d6f8d",
+        "g": "84c542040034d2c2",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "fa0416a1027484fb",
+        "type": "exec",
+        "z": "abad9a88ca0d6f8d",
+        "g": "7af0599b75ce96bf",
+        "command": "XDG_RUNTIME_DIR=/run/user/1000 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus /usr/bin/cvlc --file-caching=5000  --no-fb-tty --vout fb --fbdev=/dev/fb0 --quiet ",
+        "addpay": "VideoToPlay[0]",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "CVLC",
+        "x": 390,
+        "y": 420,
+        "wires": [
+            [],
+            [
+                "a9237caf8c926fae"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "01850a0e7c90f579",
+        "type": "debug",
+        "z": "abad9a88ca0d6f8d",
+        "g": "50f3b47b1d62d456",
+        "name": "Some error",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload[1]",
+        "targetType": "msg",
+        "statusVal": "payload[1]",
+        "statusType": "auto",
+        "x": 510,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "10292665f314fc6c",
+        "type": "debug",
+        "z": "abad9a88ca0d6f8d",
+        "g": "7af0599b75ce96bf",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "VideoToPlay[0]",
+        "targetType": "msg",
+        "statusVal": "VideoToPlay[0]",
+        "statusType": "auto",
+        "x": 400,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "b8fb5788d174801a",
+        "type": "link out",
+        "z": "abad9a88ca0d6f8d",
+        "g": "50f3b47b1d62d456",
+        "name": "link out 2",
+        "mode": "link",
+        "links": [
+            "0bdf25ad2db8b823"
+        ],
+        "x": 585,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "0bdf25ad2db8b823",
+        "type": "link in",
+        "z": "abad9a88ca0d6f8d",
+        "g": "7af0599b75ce96bf",
+        "name": "link in 2",
+        "links": [
+            "b8fb5788d174801a"
+        ],
+        "x": 55,
+        "y": 420,
+        "wires": [
+            [
+                "0ee5394a19ec2f9d"
+            ]
+        ]
+    },
+    {
+        "id": "49232eca1c1b13cc",
+        "type": "delay",
+        "z": "abad9a88ca0d6f8d",
+        "g": "ff624337f71e6c66",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 390,
+        "y": 600,
+        "wires": [
+            [
+                "751d51dfcded41f7"
+            ]
+        ]
+    },
+    {
+        "id": "92bcad8254dbf885",
+        "type": "switch",
+        "z": "abad9a88ca0d6f8d",
+        "g": "ff624337f71e6c66",
+        "name": "if 'stop'",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "stop",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 240,
+        "y": 660,
+        "wires": [
+            [
+                "49232eca1c1b13cc"
+            ]
+        ]
+    },
+    {
+        "id": "751d51dfcded41f7",
+        "type": "exec",
+        "z": "abad9a88ca0d6f8d",
+        "g": "ff624337f71e6c66",
+        "command": "pkill vlc",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 540,
+        "y": 600,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "9e34b4a2c405b0b6",
+        "type": "rpi-gpio in",
+        "z": "abad9a88ca0d6f8d",
+        "g": "ff624337f71e6c66",
+        "name": "Key 2",
+        "pin": "20",
+        "intype": "up",
+        "debounce": "50",
+        "read": false,
+        "bcm": true,
+        "x": 110,
+        "y": 580,
+        "wires": [
+            [
+                "49232eca1c1b13cc"
+            ]
+        ]
+    },
+    {
+        "id": "01dbddaf82aed932",
+        "type": "inject",
+        "z": "abad9a88ca0d6f8d",
+        "g": "ff624337f71e6c66",
+        "name": "inject",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 620,
+        "wires": [
+            [
+                "49232eca1c1b13cc"
+            ]
+        ]
+    },
+    {
+        "id": "f4e3f433d82ec260",
+        "type": "mqtt in",
+        "z": "abad9a88ca0d6f8d",
+        "g": "ff624337f71e6c66",
+        "name": "1",
+        "topic": "frasier",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "7ad2277394b478ef",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 660,
+        "wires": [
+            [
+                "92bcad8254dbf885"
+            ]
+        ]
+    },
+    {
+        "id": "46541e988de47929",
+        "type": "comment",
+        "z": "abad9a88ca0d6f8d",
+        "g": "8e0e14a4a8ae4da8",
+        "name": "Shutdown",
+        "info": "",
+        "x": 100,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "3a1639b38e613dbb",
+        "type": "rpi-gpio in",
+        "z": "abad9a88ca0d6f8d",
+        "g": "8e0e14a4a8ae4da8",
+        "name": "",
+        "pin": "27",
+        "intype": "up",
+        "debounce": "25",
+        "read": false,
+        "bcm": true,
+        "x": 100,
+        "y": 800,
+        "wires": [
+            [
+                "67678a223dc5bf97"
+            ]
+        ]
+    },
+    {
+        "id": "67678a223dc5bf97",
+        "type": "exec",
+        "z": "abad9a88ca0d6f8d",
+        "g": "8e0e14a4a8ae4da8",
+        "command": "sudo shutdown now",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 310,
+        "y": 800,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "332bb8d08ca5a6d5",
+        "type": "catch",
+        "z": "abad9a88ca0d6f8d",
+        "g": "8e0e14a4a8ae4da8",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 100,
+        "y": 860,
+        "wires": [
+            [
+                "a34c56cbb99ba96c"
+            ]
+        ]
+    },
+    {
+        "id": "a34c56cbb99ba96c",
+        "type": "debug",
+        "z": "abad9a88ca0d6f8d",
+        "g": "8e0e14a4a8ae4da8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 250,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "a9237caf8c926fae",
+        "type": "debug",
+        "z": "abad9a88ca0d6f8d",
+        "g": "7af0599b75ce96bf",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "VideoToPlay[0]",
+        "statusType": "auto",
+        "x": 520,
+        "y": 420,
+        "wires": []
     },
     {
         "id": "7ad2277394b478ef",
@@ -65,3506 +909,5 @@
         "willMsg": {},
         "userProps": "",
         "sessionExpiry": ""
-    },
-    {
-        "id": "4457f692bec0f04b",
-        "type": "exec",
-        "z": "cdf2ab2f85071871",
-        "d": true,
-        "command": "cvlc --file-caching=5000 --network-caching=10000 --no-audio  --vout fb --fbdev=/dev/fb0 ",
-        "addpay": "VideoToPlay",
-        "append": "",
-        "useSpawn": "true",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Play episode",
-        "x": 810,
-        "y": 540,
-        "wires": [
-            [
-                "d9899524af37395c"
-            ],
-            [
-                "d9899524af37395c"
-            ],
-            [
-                "d9899524af37395c"
-            ]
-        ]
-    },
-    {
-        "id": "3892bde89e32a1ff",
-        "type": "inject",
-        "z": "cdf2ab2f85071871",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "str",
-        "x": 90,
-        "y": 440,
-        "wires": [
-            [
-                "72ad5b0ecd5d55bc"
-            ]
-        ]
-    },
-    {
-        "id": "fdd4078b0180141b",
-        "type": "exec",
-        "z": "cdf2ab2f85071871",
-        "command": "ls -1 /home/pi/vids/S*",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
-        "x": 280,
-        "y": 240,
-        "wires": [
-            [
-                "97b92819a26f1cfc"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "492c01bb6fe18a4a",
-        "type": "inject",
-        "z": "cdf2ab2f85071871",
-        "name": "inject",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 90,
-        "y": 240,
-        "wires": [
-            [
-                "fdd4078b0180141b"
-            ]
-        ]
-    },
-    {
-        "id": "97b92819a26f1cfc",
-        "type": "split",
-        "z": "cdf2ab2f85071871",
-        "name": "",
-        "splt": "\\n",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "",
-        "x": 510,
-        "y": 240,
-        "wires": [
-            [
-                "15b33d77396139fd"
-            ]
-        ]
-    },
-    {
-        "id": "bfb5d532d82585b8",
-        "type": "rpi-gpio in",
-        "z": "cdf2ab2f85071871",
-        "name": "Key 1",
-        "pin": "21",
-        "intype": "up",
-        "debounce": "25",
-        "read": false,
-        "bcm": true,
-        "x": 90,
-        "y": 480,
-        "wires": [
-            [
-                "72ad5b0ecd5d55bc"
-            ]
-        ]
-    },
-    {
-        "id": "15b33d77396139fd",
-        "type": "change",
-        "z": "cdf2ab2f85071871",
-        "name": "Count the episodes",
-        "rules": [
-            {
-                "t": "set",
-                "p": "countFrasierEpisodes",
-                "pt": "global",
-                "to": "parts.count",
-                "tot": "msg",
-                "dc": true
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 690,
-        "y": 240,
-        "wires": [
-            [
-                "88a4cdbb7c48632b"
-            ]
-        ]
-    },
-    {
-        "id": "88a4cdbb7c48632b",
-        "type": "debug",
-        "z": "cdf2ab2f85071871",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 870,
-        "y": 240,
-        "wires": []
-    },
-    {
-        "id": "624710098ae4c29f",
-        "type": "exec",
-        "z": "cdf2ab2f85071871",
-        "command": "python -c 'import os, json; print (json.dumps(os.listdir(\"/home/pi/vids/\")))'",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "List Frasier episodes",
-        "x": 440,
-        "y": 480,
-        "wires": [
-            [
-                "e63d2ba4dfe6bcdd",
-                "cb87d69aea0349be"
-            ],
-            [
-                "cb87d69aea0349be"
-            ],
-            []
-        ],
-        "info": "Converts the output of ls to a json object"
-    },
-    {
-        "id": "2f6321a46f453cbb",
-        "type": "debug",
-        "z": "cdf2ab2f85071871",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": true,
-        "complete": "VideoToPlay",
-        "targetType": "msg",
-        "statusVal": "VideoToPlay",
-        "statusType": "msg",
-        "x": 650,
-        "y": 600,
-        "wires": []
-    },
-    {
-        "id": "e63d2ba4dfe6bcdd",
-        "type": "json",
-        "z": "cdf2ab2f85071871",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": true,
-        "x": 610,
-        "y": 480,
-        "wires": [
-            [
-                "ecfb4e6157737b29"
-            ]
-        ]
-    },
-    {
-        "id": "ecfb4e6157737b29",
-        "type": "change",
-        "z": "cdf2ab2f85071871",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "to",
-                "pt": "msg",
-                "to": "$globalContext(\"countFrasierEpisodes\")-1",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 750,
-        "y": 480,
-        "wires": [
-            [
-                "ea18034b4063d4df"
-            ]
-        ],
-        "info": "The random node accepts an upper bound in msg.to\nSet it to the count of Frasier episodes"
-    },
-    {
-        "id": "ea18034b4063d4df",
-        "type": "random",
-        "z": "cdf2ab2f85071871",
-        "name": "Pick 1",
-        "low": 1,
-        "high": "",
-        "inte": "true",
-        "property": "choice",
-        "x": 890,
-        "y": 480,
-        "wires": [
-            [
-                "3558f3236d8a6cba"
-            ]
-        ]
-    },
-    {
-        "id": "d9899524af37395c",
-        "type": "debug",
-        "z": "cdf2ab2f85071871",
-        "name": "",
-        "active": true,
-        "tosidebar": false,
-        "console": true,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1000,
-        "y": 540,
-        "wires": []
-    },
-    {
-        "id": "3558f3236d8a6cba",
-        "type": "function",
-        "z": "cdf2ab2f85071871",
-        "name": "Set flow context",
-        "func": "msg.VideoToPlay = '\"' + \"/home/pi/vids/\" + msg.payload[msg.choice] + '\"'\nflow.set(\"Frasier_LatestPlayedEpisodeNumber\", msg.choice)\nflow.set(\"Frasier_LastestEpisode\", msg.VideoToPlay)\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 420,
-        "y": 540,
-        "wires": [
-            [
-                "2f6321a46f453cbb",
-                "6095aac1e938c4a3",
-                "27c361349daeeb2b"
-            ]
-        ]
-    },
-    {
-        "id": "bb39e14af0f584ce",
-        "type": "comment",
-        "z": "cdf2ab2f85071871",
-        "name": "Init",
-        "info": "This runs when node-red first starts or this flow deploys for the first time.",
-        "x": 120,
-        "y": 200,
-        "wires": []
-    },
-    {
-        "id": "6095aac1e938c4a3",
-        "type": "exec",
-        "z": "cdf2ab2f85071871",
-        "command": "sudo killall vlc; sudo killall cvlc",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Kill player procs",
-        "x": 640,
-        "y": 540,
-        "wires": [
-            [],
-            [],
-            [
-                "4457f692bec0f04b",
-                "431e70baf3463202"
-            ]
-        ]
-    },
-    {
-        "id": "72ad5b0ecd5d55bc",
-        "type": "delay",
-        "z": "cdf2ab2f85071871",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 250,
-        "y": 480,
-        "wires": [
-            [
-                "624710098ae4c29f"
-            ]
-        ]
-    },
-    {
-        "id": "3aaff4df8782f573",
-        "type": "comment",
-        "z": "cdf2ab2f85071871",
-        "name": "Play Frasier",
-        "info": "This is the routine to play a Frasier episode when pressing Key 1",
-        "x": 110,
-        "y": 400,
-        "wires": []
-    },
-    {
-        "id": "878b53a21eb3ca63",
-        "type": "debug",
-        "z": "cdf2ab2f85071871",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 870,
-        "y": 840,
-        "wires": []
-    },
-    {
-        "id": "137e6afeaf6ccf5f",
-        "type": "exec",
-        "z": "cdf2ab2f85071871",
-        "command": "sudo killall vlc; sudo killall cvlc",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Kill player procs",
-        "x": 720,
-        "y": 840,
-        "wires": [
-            [],
-            [
-                "878b53a21eb3ca63"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "8799f9a870ab949e",
-        "type": "rpi-gpio in",
-        "z": "cdf2ab2f85071871",
-        "name": "Key 2",
-        "pin": "20",
-        "intype": "up",
-        "debounce": "50",
-        "read": false,
-        "bcm": true,
-        "x": 90,
-        "y": 800,
-        "wires": [
-            [
-                "1109e8809571d264"
-            ]
-        ]
-    },
-    {
-        "id": "af821441d20de6ac",
-        "type": "comment",
-        "z": "cdf2ab2f85071871",
-        "name": "Stop video",
-        "info": "Stop the video when pressing Key 2",
-        "x": 100,
-        "y": 740,
-        "wires": []
-    },
-    {
-        "id": "1109e8809571d264",
-        "type": "delay",
-        "z": "cdf2ab2f85071871",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 550,
-        "y": 840,
-        "wires": [
-            [
-                "137e6afeaf6ccf5f"
-            ]
-        ]
-    },
-    {
-        "id": "ec94aac7eb52fd87",
-        "type": "comment",
-        "z": "cdf2ab2f85071871",
-        "name": "Shutdown",
-        "info": "",
-        "x": 100,
-        "y": 1040,
-        "wires": []
-    },
-    {
-        "id": "a23cbdc0bd9c017f",
-        "type": "rpi-gpio in",
-        "z": "cdf2ab2f85071871",
-        "name": "",
-        "pin": "27",
-        "intype": "up",
-        "debounce": "25",
-        "read": false,
-        "bcm": true,
-        "x": 100,
-        "y": 1080,
-        "wires": [
-            [
-                "6664f57177e45f42"
-            ]
-        ]
-    },
-    {
-        "id": "6664f57177e45f42",
-        "type": "exec",
-        "z": "cdf2ab2f85071871",
-        "command": "sudo shutdown now",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
-        "x": 310,
-        "y": 1080,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "7939ee01f1245086",
-        "type": "inject",
-        "z": "cdf2ab2f85071871",
-        "name": "inject",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 90,
-        "y": 840,
-        "wires": [
-            [
-                "1109e8809571d264"
-            ]
-        ]
-    },
-    {
-        "id": "94ea426660d5fa7c",
-        "type": "exec",
-        "z": "cdf2ab2f85071871",
-        "command": "sudo omxplayer -b --orientation 180 -o alsa",
-        "addpay": "VideoToPlay",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Play episode",
-        "x": 750,
-        "y": 1600,
-        "wires": [
-            [
-                "deea3409d43843f8"
-            ],
-            [
-                "deea3409d43843f8"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "d5073e6975e80864",
-        "type": "inject",
-        "z": "cdf2ab2f85071871",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "str",
-        "x": 70,
-        "y": 1500,
-        "wires": [
-            [
-                "54c12502a21dd6d0"
-            ]
-        ]
-    },
-    {
-        "id": "edbe5a5c7313dfd4",
-        "type": "rpi-gpio in",
-        "z": "cdf2ab2f85071871",
-        "name": "Key 3",
-        "pin": "23",
-        "intype": "up",
-        "debounce": "25",
-        "read": false,
-        "bcm": true,
-        "x": 70,
-        "y": 1580,
-        "wires": [
-            [
-                "54c12502a21dd6d0"
-            ]
-        ]
-    },
-    {
-        "id": "255401101ca44458",
-        "type": "exec",
-        "z": "cdf2ab2f85071871",
-        "command": "python -c 'import os, json; print json.dumps(os.listdir(\"/home/pi/vids/Seinfeld\"))'",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "List Seinfeld episodes",
-        "x": 420,
-        "y": 1540,
-        "wires": [
-            [
-                "e1e27b1274e26949"
-            ],
-            [],
-            []
-        ],
-        "info": "Converts the output of ls to a json object"
-    },
-    {
-        "id": "db76a8f8f8ae7059",
-        "type": "debug",
-        "z": "cdf2ab2f85071871",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": true,
-        "complete": "VideoToPlay",
-        "targetType": "msg",
-        "statusVal": "VideoToPlay",
-        "statusType": "msg",
-        "x": 590,
-        "y": 1640,
-        "wires": []
-    },
-    {
-        "id": "e1e27b1274e26949",
-        "type": "json",
-        "z": "cdf2ab2f85071871",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": true,
-        "x": 590,
-        "y": 1540,
-        "wires": [
-            [
-                "37fe39c544369666"
-            ]
-        ]
-    },
-    {
-        "id": "37fe39c544369666",
-        "type": "change",
-        "z": "cdf2ab2f85071871",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "to",
-                "pt": "msg",
-                "to": "$globalContext(\"countSeinfeldEpisodes\")-1",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 730,
-        "y": 1540,
-        "wires": [
-            [
-                "7b9aedcbaa38c30a"
-            ]
-        ],
-        "info": "The random node accepts an upper bound in msg.to\nSet it to the count of Frasier episodes"
-    },
-    {
-        "id": "7b9aedcbaa38c30a",
-        "type": "random",
-        "z": "cdf2ab2f85071871",
-        "name": "Pick 1",
-        "low": 1,
-        "high": "",
-        "inte": "true",
-        "property": "choice",
-        "x": 870,
-        "y": 1540,
-        "wires": [
-            [
-                "19a6b98b0197adc2"
-            ]
-        ]
-    },
-    {
-        "id": "deea3409d43843f8",
-        "type": "debug",
-        "z": "cdf2ab2f85071871",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 890,
-        "y": 1600,
-        "wires": []
-    },
-    {
-        "id": "19a6b98b0197adc2",
-        "type": "function",
-        "z": "cdf2ab2f85071871",
-        "name": "Set flow context",
-        "func": "msg.VideoToPlay = '\"' + \"/home/pi/vids/Seinfeld/\" + msg.payload[msg.choice] + '\"'\nflow.set(\"Seinfeld_LatestPlayedEpisodeNumber\", msg.choice)\nflow.set(\"Seinfeld_LastestEpisode\", msg.VideoToPlay)\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 400,
-        "y": 1600,
-        "wires": [
-            [
-                "db76a8f8f8ae7059",
-                "47c20de256446972"
-            ]
-        ]
-    },
-    {
-        "id": "47c20de256446972",
-        "type": "exec",
-        "z": "cdf2ab2f85071871",
-        "command": "sudo killall omxplayer; sudo killall omxplayer.bin",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Kill player procs",
-        "x": 580,
-        "y": 1600,
-        "wires": [
-            [],
-            [],
-            [
-                "94ea426660d5fa7c"
-            ]
-        ]
-    },
-    {
-        "id": "54c12502a21dd6d0",
-        "type": "delay",
-        "z": "cdf2ab2f85071871",
-        "d": true,
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 230,
-        "y": 1540,
-        "wires": [
-            [
-                "255401101ca44458"
-            ]
-        ]
-    },
-    {
-        "id": "71735277f3423e7a",
-        "type": "comment",
-        "z": "cdf2ab2f85071871",
-        "name": "Fuck Seinfeld and his zionist support. I disabled this flow. March 2024",
-        "info": "This is the routine to play a Seinfeld episode when pressing Key 1",
-        "x": 270,
-        "y": 1460,
-        "wires": []
-    },
-    {
-        "id": "529d698ac863fc28",
-        "type": "mqtt in",
-        "z": "cdf2ab2f85071871",
-        "name": "1",
-        "topic": "frasier",
-        "qos": "2",
-        "datatype": "utf8",
-        "broker": "7ad2277394b478ef",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 70,
-        "y": 600,
-        "wires": [
-            [
-                "68fac24222bd753a"
-            ]
-        ]
-    },
-    {
-        "id": "fb1393e2426e2f43",
-        "type": "mqtt in",
-        "z": "cdf2ab2f85071871",
-        "name": "1",
-        "topic": "frasier",
-        "qos": "2",
-        "datatype": "utf8",
-        "broker": "7ad2277394b478ef",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 90,
-        "y": 880,
-        "wires": [
-            [
-                "82a19297560f722d"
-            ]
-        ]
-    },
-    {
-        "id": "92f1dec28d2a6f6f",
-        "type": "catch",
-        "z": "cdf2ab2f85071871",
-        "name": "",
-        "scope": null,
-        "uncaught": false,
-        "x": 690,
-        "y": 920,
-        "wires": [
-            [
-                "69d203459bd5c5e3"
-            ]
-        ]
-    },
-    {
-        "id": "69d203459bd5c5e3",
-        "type": "debug",
-        "z": "cdf2ab2f85071871",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 830,
-        "y": 920,
-        "wires": []
-    },
-    {
-        "id": "e1091c36dd450d4d",
-        "type": "mqtt out",
-        "z": "cdf2ab2f85071871",
-        "name": "",
-        "topic": "LastFrasierEpisode",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "7ad2277394b478ef",
-        "x": 850,
-        "y": 720,
-        "wires": []
-    },
-    {
-        "id": "27c361349daeeb2b",
-        "type": "change",
-        "z": "cdf2ab2f85071871",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "VideoToPlay",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 420,
-        "y": 660,
-        "wires": [
-            [
-                "bda2c99c9aee03ea"
-            ]
-        ]
-    },
-    {
-        "id": "bda2c99c9aee03ea",
-        "type": "change",
-        "z": "cdf2ab2f85071871",
-        "name": "",
-        "rules": [
-            {
-                "t": "change",
-                "p": "payload",
-                "pt": "msg",
-                "from": "/home/pi/vids/Frasier/",
-                "fromt": "str",
-                "to": "",
-                "tot": "str"
-            },
-            {
-                "t": "change",
-                "p": "payload",
-                "pt": "msg",
-                "from": ".avi",
-                "fromt": "str",
-                "to": "",
-                "tot": "str"
-            },
-            {
-                "t": "change",
-                "p": "payload",
-                "pt": "msg",
-                "from": ".mkv",
-                "fromt": "str",
-                "to": "",
-                "tot": "str"
-            },
-            {
-                "t": "change",
-                "p": "payload",
-                "pt": "msg",
-                "from": "\"",
-                "fromt": "str",
-                "to": "",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 620,
-        "y": 660,
-        "wires": [
-            [
-                "c346b068066e88f5"
-            ]
-        ]
-    },
-    {
-        "id": "68fac24222bd753a",
-        "type": "switch",
-        "z": "cdf2ab2f85071871",
-        "name": "if 'play'",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "play",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 160,
-        "y": 540,
-        "wires": [
-            [
-                "72ad5b0ecd5d55bc"
-            ]
-        ]
-    },
-    {
-        "id": "82a19297560f722d",
-        "type": "switch",
-        "z": "cdf2ab2f85071871",
-        "name": "if 'stop'",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "stop",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 300,
-        "y": 880,
-        "wires": [
-            [
-                "1109e8809571d264"
-            ]
-        ]
-    },
-    {
-        "id": "c346b068066e88f5",
-        "type": "function",
-        "z": "cdf2ab2f85071871",
-        "name": "Parse data",
-        "func": "// Use a regular expression to split the payload on the first dash, with or without surrounding spaces\nlet parts = msg.payload.split(/ - |-(?!.* - )/);\n\n// Initialize an object to hold the extracted values\nlet result = {\n    season: \"\",\n    episode: \"\",\n    title: \"\"\n};\n\nif (parts.length >= 2) {\n    // The first part before the dash is assumed to be 'SxxExx'\n    let seasonEpisode = parts[0];\n    // Attempt to further split season and episode\n    let seasonEpisodeParts = seasonEpisode.match(/S(\\d+)E(\\d+)/i);\n    if (seasonEpisodeParts && seasonEpisodeParts.length === 3) {\n        result.season = seasonEpisodeParts[1];\n        result.episode = seasonEpisodeParts[2];\n    } else {\n        // Handle cases where the season/episode format doesn't match\n        result.season = \"Unknown\";\n        result.episode = \"Unknown\";\n    }\n\n    // Everything after the dash is the title\n    result.title = parts.slice(1).join(' - ').trim();\n} else {\n    // In case the string doesn't properly split, set a default or handle as error\n    result.title = \"Invalid format - \" + msg.payload;\n}\n\n// Assign the result object to msg.payload\nmsg.payload = result;\n\n// Return the message object to continue the flow\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 810,
-        "y": 660,
-        "wires": [
-            [
-                "e1091c36dd450d4d",
-                "4e01ce42e403b7a2"
-            ]
-        ]
-    },
-    {
-        "id": "4e01ce42e403b7a2",
-        "type": "debug",
-        "z": "cdf2ab2f85071871",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 950,
-        "y": 660,
-        "wires": []
-    },
-    {
-        "id": "cb87d69aea0349be",
-        "type": "debug",
-        "z": "cdf2ab2f85071871",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 650,
-        "y": 400,
-        "wires": []
-    },
-    {
-        "id": "431e70baf3463202",
-        "type": "exec",
-        "z": "cdf2ab2f85071871",
-        "d": true,
-        "command": "paplay /usr/share/sounds/alsa/Noise.wav",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "true",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Test sound",
-        "x": 930,
-        "y": 600,
-        "wires": [
-            [
-                "d9899524af37395c"
-            ],
-            [
-                "d9899524af37395c"
-            ],
-            [
-                "d9899524af37395c"
-            ]
-        ]
-    },
-    {
-        "id": "281bd52845af65d4",
-        "type": "inject",
-        "z": "72f5c05c727aab0b",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 120,
-        "y": 120,
-        "wires": [
-            [
-                "57cd70914bfa313e"
-            ]
-        ]
-    },
-    {
-        "id": "57cd70914bfa313e",
-        "type": "template",
-        "z": "72f5c05c727aab0b",
-        "name": "fake a sonos bookmark",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "{\n \"uri\": \"x-rincon-mp3radio://https://www.internet-radio.com/servers/tools/playlistgenerator/?u=http://us4.internet-radio.com:8258/listen.pls&amp;t=.m3u\",\n \"metadata\": \"&lt;DIDL-Lite xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:upnp=&quot;urn:schemas-upnp-org:metadata-1-0/upnp/&quot; xmlns:r=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot; xmlns=&quot;urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/&quot;&gt;&lt;item id=&quot;1004206cspotify%3aalbum%3a{{payload}}&quot; parentID=&quot;&quot; restricted=&quot;true&quot;&gt;&lt;dc:title&gt;&lt;/dc:title&gt;&lt;upnp:class&gt;object.container.album.musicAlbum&lt;/upnp:class&gt;&lt;desc id=&quot;cdudn&quot; nameSpace=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot;&gt;SA_RINCON3079_X_#Svc3079-0-Token&lt;/desc&gt;&lt;/item&gt;&lt;/DIDL-Lite&gt;\",\n \"queue\": false\n}\n",
-        "output": "json",
-        "x": 330,
-        "y": 120,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "b8d71858650d0733",
-        "type": "exec",
-        "z": "72f5c05c727aab0b",
-        "command": "sudo omxplayer -b --orientation 180 -o alsa",
-        "addpay": "VideoToPlay",
-        "append": "",
-        "useSpawn": "true",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Play episode",
-        "x": 810,
-        "y": 540,
-        "wires": [
-            [
-                "3af723dedd4deb0b"
-            ],
-            [
-                "3af723dedd4deb0b"
-            ],
-            [
-                "3af723dedd4deb0b"
-            ]
-        ]
-    },
-    {
-        "id": "f0c5fb31f85ae676",
-        "type": "inject",
-        "z": "72f5c05c727aab0b",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "str",
-        "x": 90,
-        "y": 440,
-        "wires": [
-            [
-                "aef73ed5297d9ce0"
-            ]
-        ]
-    },
-    {
-        "id": "1e69c8091d5a69d4",
-        "type": "exec",
-        "z": "72f5c05c727aab0b",
-        "command": "ls -1 /home/pi/vids/Frasier/S*",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
-        "x": 300,
-        "y": 240,
-        "wires": [
-            [
-                "c778f9f2becd91b8"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "b994b7bcfc3ee311",
-        "type": "inject",
-        "z": "72f5c05c727aab0b",
-        "name": "inject",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 90,
-        "y": 280,
-        "wires": [
-            [
-                "1e69c8091d5a69d4",
-                "2c3584729ef5bde4"
-            ]
-        ]
-    },
-    {
-        "id": "c778f9f2becd91b8",
-        "type": "split",
-        "z": "72f5c05c727aab0b",
-        "name": "",
-        "splt": "\\n",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "",
-        "x": 510,
-        "y": 240,
-        "wires": [
-            [
-                "577b0b25ae868a61"
-            ]
-        ]
-    },
-    {
-        "id": "4b2eaeaddda75a37",
-        "type": "rpi-gpio in",
-        "z": "72f5c05c727aab0b",
-        "name": "Key 1",
-        "pin": "21",
-        "intype": "up",
-        "debounce": "25",
-        "read": false,
-        "bcm": true,
-        "x": 90,
-        "y": 480,
-        "wires": [
-            [
-                "aef73ed5297d9ce0"
-            ]
-        ]
-    },
-    {
-        "id": "577b0b25ae868a61",
-        "type": "change",
-        "z": "72f5c05c727aab0b",
-        "name": "Count the episodes",
-        "rules": [
-            {
-                "t": "set",
-                "p": "countFrasierEpisodes",
-                "pt": "global",
-                "to": "parts.count",
-                "tot": "msg",
-                "dc": true
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 690,
-        "y": 240,
-        "wires": [
-            [
-                "42a0ade1584c4cf7"
-            ]
-        ]
-    },
-    {
-        "id": "42a0ade1584c4cf7",
-        "type": "debug",
-        "z": "72f5c05c727aab0b",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 870,
-        "y": 240,
-        "wires": []
-    },
-    {
-        "id": "7144180c11832dee",
-        "type": "exec",
-        "z": "72f5c05c727aab0b",
-        "command": "python -c 'import os, json; print json.dumps(os.listdir(\"/home/pi/vids/Frasier\"))'",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "List Frasier episodes",
-        "x": 440,
-        "y": 480,
-        "wires": [
-            [
-                "aab09b3359806b67"
-            ],
-            [],
-            []
-        ],
-        "info": "Converts the output of ls to a json object"
-    },
-    {
-        "id": "b873cc8cbc2ac521",
-        "type": "debug",
-        "z": "72f5c05c727aab0b",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": true,
-        "complete": "VideoToPlay",
-        "targetType": "msg",
-        "statusVal": "VideoToPlay",
-        "statusType": "msg",
-        "x": 650,
-        "y": 600,
-        "wires": []
-    },
-    {
-        "id": "aab09b3359806b67",
-        "type": "json",
-        "z": "72f5c05c727aab0b",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": true,
-        "x": 610,
-        "y": 480,
-        "wires": [
-            [
-                "8ee6a96315260cbf"
-            ]
-        ]
-    },
-    {
-        "id": "8ee6a96315260cbf",
-        "type": "change",
-        "z": "72f5c05c727aab0b",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "to",
-                "pt": "msg",
-                "to": "$globalContext(\"countFrasierEpisodes\")-1",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 750,
-        "y": 480,
-        "wires": [
-            [
-                "54ed3d99e9c3232f"
-            ]
-        ],
-        "info": "The random node accepts an upper bound in msg.to\nSet it to the count of Frasier episodes"
-    },
-    {
-        "id": "54ed3d99e9c3232f",
-        "type": "random",
-        "z": "72f5c05c727aab0b",
-        "name": "Pick 1",
-        "low": 1,
-        "high": "",
-        "inte": "true",
-        "property": "choice",
-        "x": 890,
-        "y": 480,
-        "wires": [
-            [
-                "2063b7eafa7867c1"
-            ]
-        ]
-    },
-    {
-        "id": "3af723dedd4deb0b",
-        "type": "debug",
-        "z": "72f5c05c727aab0b",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 950,
-        "y": 540,
-        "wires": []
-    },
-    {
-        "id": "2063b7eafa7867c1",
-        "type": "function",
-        "z": "72f5c05c727aab0b",
-        "name": "Set flow context",
-        "func": "msg.VideoToPlay = '\"' + \"/home/pi/vids/Frasier/\" + msg.payload[msg.choice] + '\"'\nflow.set(\"Frasier_LatestPlayedEpisodeNumber\", msg.choice)\nflow.set(\"Frasier_LastestEpisode\", msg.VideoToPlay)\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 420,
-        "y": 540,
-        "wires": [
-            [
-                "b873cc8cbc2ac521",
-                "60c79f9d67759fbd",
-                "5826052ff2e15577"
-            ]
-        ]
-    },
-    {
-        "id": "efac0ec5a1963bd5",
-        "type": "comment",
-        "z": "72f5c05c727aab0b",
-        "name": "Init",
-        "info": "This runs when node-red first starts or this flow deploys for the first time.",
-        "x": 120,
-        "y": 200,
-        "wires": []
-    },
-    {
-        "id": "60c79f9d67759fbd",
-        "type": "exec",
-        "z": "72f5c05c727aab0b",
-        "command": "sudo killall omxplayer; sudo killall omxplayer.bin",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Kill player procs",
-        "x": 640,
-        "y": 540,
-        "wires": [
-            [],
-            [],
-            [
-                "b8d71858650d0733"
-            ]
-        ]
-    },
-    {
-        "id": "aef73ed5297d9ce0",
-        "type": "delay",
-        "z": "72f5c05c727aab0b",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 250,
-        "y": 480,
-        "wires": [
-            [
-                "7144180c11832dee"
-            ]
-        ]
-    },
-    {
-        "id": "b9aee9b77dd622a8",
-        "type": "comment",
-        "z": "72f5c05c727aab0b",
-        "name": "Play Frasier",
-        "info": "This is the routine to play a Frasier episode when pressing Key 1",
-        "x": 110,
-        "y": 400,
-        "wires": []
-    },
-    {
-        "id": "16a8fa4a0aed9275",
-        "type": "debug",
-        "z": "72f5c05c727aab0b",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 870,
-        "y": 840,
-        "wires": []
-    },
-    {
-        "id": "b30cdd6c2cb30794",
-        "type": "exec",
-        "z": "72f5c05c727aab0b",
-        "command": "sudo killall omxplayer; sudo killall omxplayer.bin; sudo killall vlc",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Kill player procs",
-        "x": 720,
-        "y": 840,
-        "wires": [
-            [],
-            [
-                "16a8fa4a0aed9275"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "b345d4d85ae4900a",
-        "type": "rpi-gpio in",
-        "z": "72f5c05c727aab0b",
-        "name": "Key 2",
-        "pin": "20",
-        "intype": "up",
-        "debounce": "50",
-        "read": false,
-        "bcm": true,
-        "x": 90,
-        "y": 800,
-        "wires": [
-            [
-                "adc0ca30b256ced8"
-            ]
-        ]
-    },
-    {
-        "id": "a07704752ecf9d50",
-        "type": "comment",
-        "z": "72f5c05c727aab0b",
-        "name": "Stop video",
-        "info": "Stop the video when pressing Key 2",
-        "x": 100,
-        "y": 740,
-        "wires": []
-    },
-    {
-        "id": "adc0ca30b256ced8",
-        "type": "delay",
-        "z": "72f5c05c727aab0b",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 550,
-        "y": 840,
-        "wires": [
-            [
-                "b30cdd6c2cb30794"
-            ]
-        ]
-    },
-    {
-        "id": "90e34686e97374b8",
-        "type": "comment",
-        "z": "72f5c05c727aab0b",
-        "name": "Shutdown",
-        "info": "",
-        "x": 100,
-        "y": 1040,
-        "wires": []
-    },
-    {
-        "id": "b2efc085e678990d",
-        "type": "rpi-gpio in",
-        "z": "72f5c05c727aab0b",
-        "name": "",
-        "pin": "27",
-        "intype": "up",
-        "debounce": "25",
-        "read": false,
-        "bcm": true,
-        "x": 100,
-        "y": 1080,
-        "wires": [
-            [
-                "ef7751819211d5ca"
-            ]
-        ]
-    },
-    {
-        "id": "ef7751819211d5ca",
-        "type": "exec",
-        "z": "72f5c05c727aab0b",
-        "command": "sudo shutdown now",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
-        "x": 310,
-        "y": 1080,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "b6af60cf90aa2d56",
-        "type": "inject",
-        "z": "72f5c05c727aab0b",
-        "name": "inject",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 90,
-        "y": 840,
-        "wires": [
-            [
-                "adc0ca30b256ced8"
-            ]
-        ]
-    },
-    {
-        "id": "2c3584729ef5bde4",
-        "type": "exec",
-        "z": "72f5c05c727aab0b",
-        "command": "ls -1 /home/pi/vids/Seinfeld/S*",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
-        "x": 310,
-        "y": 320,
-        "wires": [
-            [
-                "1b40be6f83222137"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "1b40be6f83222137",
-        "type": "split",
-        "z": "72f5c05c727aab0b",
-        "name": "",
-        "splt": "\\n",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "",
-        "x": 510,
-        "y": 320,
-        "wires": [
-            [
-                "8b54b77599662dd1"
-            ]
-        ]
-    },
-    {
-        "id": "8b54b77599662dd1",
-        "type": "change",
-        "z": "72f5c05c727aab0b",
-        "name": "Count the episodes",
-        "rules": [
-            {
-                "t": "set",
-                "p": "countSeinfeldEpisodes",
-                "pt": "global",
-                "to": "parts.count",
-                "tot": "msg",
-                "dc": true
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 690,
-        "y": 320,
-        "wires": [
-            [
-                "f32156ab091096fb"
-            ]
-        ]
-    },
-    {
-        "id": "f32156ab091096fb",
-        "type": "debug",
-        "z": "72f5c05c727aab0b",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 870,
-        "y": 320,
-        "wires": []
-    },
-    {
-        "id": "0ff24cddb2a1aa28",
-        "type": "exec",
-        "z": "72f5c05c727aab0b",
-        "command": "sudo omxplayer -b --orientation 180 -o alsa",
-        "addpay": "VideoToPlay",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Play episode",
-        "x": 750,
-        "y": 1600,
-        "wires": [
-            [
-                "99da42df7347c46b"
-            ],
-            [
-                "99da42df7347c46b"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "cd88522740088422",
-        "type": "inject",
-        "z": "72f5c05c727aab0b",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "str",
-        "x": 70,
-        "y": 1500,
-        "wires": [
-            [
-                "bb54364912c7fea0"
-            ]
-        ]
-    },
-    {
-        "id": "6a8f8bad0f5e8cb2",
-        "type": "rpi-gpio in",
-        "z": "72f5c05c727aab0b",
-        "name": "Key 3",
-        "pin": "23",
-        "intype": "up",
-        "debounce": "25",
-        "read": false,
-        "bcm": true,
-        "x": 70,
-        "y": 1580,
-        "wires": [
-            [
-                "bb54364912c7fea0"
-            ]
-        ]
-    },
-    {
-        "id": "42a135337b68d83c",
-        "type": "exec",
-        "z": "72f5c05c727aab0b",
-        "command": "python -c 'import os, json; print json.dumps(os.listdir(\"/home/pi/vids/Seinfeld\"))'",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "List Seinfeld episodes",
-        "x": 420,
-        "y": 1540,
-        "wires": [
-            [
-                "4b691c5c81761485"
-            ],
-            [],
-            []
-        ],
-        "info": "Converts the output of ls to a json object"
-    },
-    {
-        "id": "ded6696bcb05d0c0",
-        "type": "debug",
-        "z": "72f5c05c727aab0b",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": true,
-        "complete": "VideoToPlay",
-        "targetType": "msg",
-        "statusVal": "VideoToPlay",
-        "statusType": "msg",
-        "x": 590,
-        "y": 1640,
-        "wires": []
-    },
-    {
-        "id": "4b691c5c81761485",
-        "type": "json",
-        "z": "72f5c05c727aab0b",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": true,
-        "x": 590,
-        "y": 1540,
-        "wires": [
-            [
-                "3c98799a47163bd4"
-            ]
-        ]
-    },
-    {
-        "id": "3c98799a47163bd4",
-        "type": "change",
-        "z": "72f5c05c727aab0b",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "to",
-                "pt": "msg",
-                "to": "$globalContext(\"countSeinfeldEpisodes\")-1",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 730,
-        "y": 1540,
-        "wires": [
-            [
-                "25ec064bb1328b46"
-            ]
-        ],
-        "info": "The random node accepts an upper bound in msg.to\nSet it to the count of Frasier episodes"
-    },
-    {
-        "id": "25ec064bb1328b46",
-        "type": "random",
-        "z": "72f5c05c727aab0b",
-        "name": "Pick 1",
-        "low": 1,
-        "high": "",
-        "inte": "true",
-        "property": "choice",
-        "x": 870,
-        "y": 1540,
-        "wires": [
-            [
-                "73e5b1976d759050"
-            ]
-        ]
-    },
-    {
-        "id": "99da42df7347c46b",
-        "type": "debug",
-        "z": "72f5c05c727aab0b",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 890,
-        "y": 1600,
-        "wires": []
-    },
-    {
-        "id": "73e5b1976d759050",
-        "type": "function",
-        "z": "72f5c05c727aab0b",
-        "name": "Set flow context",
-        "func": "msg.VideoToPlay = '\"' + \"/home/pi/vids/Seinfeld/\" + msg.payload[msg.choice] + '\"'\nflow.set(\"Seinfeld_LatestPlayedEpisodeNumber\", msg.choice)\nflow.set(\"Seinfeld_LastestEpisode\", msg.VideoToPlay)\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 400,
-        "y": 1600,
-        "wires": [
-            [
-                "ded6696bcb05d0c0",
-                "7c4a1d95a38a43ca"
-            ]
-        ]
-    },
-    {
-        "id": "7c4a1d95a38a43ca",
-        "type": "exec",
-        "z": "72f5c05c727aab0b",
-        "command": "sudo killall omxplayer; sudo killall omxplayer.bin",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Kill player procs",
-        "x": 580,
-        "y": 1600,
-        "wires": [
-            [],
-            [],
-            [
-                "0ff24cddb2a1aa28"
-            ]
-        ]
-    },
-    {
-        "id": "bb54364912c7fea0",
-        "type": "delay",
-        "z": "72f5c05c727aab0b",
-        "d": true,
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 230,
-        "y": 1540,
-        "wires": [
-            [
-                "42a135337b68d83c"
-            ]
-        ]
-    },
-    {
-        "id": "f2c1bb9608d10f87",
-        "type": "comment",
-        "z": "72f5c05c727aab0b",
-        "name": "Fuck Seinfeld and his zionist support. I disabled this flow. March 2024",
-        "info": "This is the routine to play a Seinfeld episode when pressing Key 1",
-        "x": 270,
-        "y": 1460,
-        "wires": []
-    },
-    {
-        "id": "13d3f518aaebdf0b",
-        "type": "mqtt in",
-        "z": "72f5c05c727aab0b",
-        "name": "1",
-        "topic": "frasier",
-        "qos": "2",
-        "datatype": "utf8",
-        "broker": "7ad2277394b478ef",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 70,
-        "y": 600,
-        "wires": [
-            [
-                "7db515215f33ec3b"
-            ]
-        ]
-    },
-    {
-        "id": "9b4a595626f94bfc",
-        "type": "mqtt in",
-        "z": "72f5c05c727aab0b",
-        "name": "1",
-        "topic": "frasier",
-        "qos": "2",
-        "datatype": "utf8",
-        "broker": "7ad2277394b478ef",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 90,
-        "y": 880,
-        "wires": [
-            [
-                "6523c18e72ca026b"
-            ]
-        ]
-    },
-    {
-        "id": "4742dbe0727b3eb2",
-        "type": "catch",
-        "z": "72f5c05c727aab0b",
-        "name": "",
-        "scope": null,
-        "uncaught": false,
-        "x": 690,
-        "y": 920,
-        "wires": [
-            [
-                "ff5af0a69c00ae86"
-            ]
-        ]
-    },
-    {
-        "id": "ff5af0a69c00ae86",
-        "type": "debug",
-        "z": "72f5c05c727aab0b",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 850,
-        "y": 920,
-        "wires": []
-    },
-    {
-        "id": "4503e14a64404949",
-        "type": "mqtt out",
-        "z": "72f5c05c727aab0b",
-        "name": "",
-        "topic": "LastFrasierEpisode",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "7ad2277394b478ef",
-        "x": 850,
-        "y": 720,
-        "wires": []
-    },
-    {
-        "id": "5826052ff2e15577",
-        "type": "change",
-        "z": "72f5c05c727aab0b",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "VideoToPlay",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 420,
-        "y": 660,
-        "wires": [
-            [
-                "b7f2f3c9e184c437"
-            ]
-        ]
-    },
-    {
-        "id": "b7f2f3c9e184c437",
-        "type": "change",
-        "z": "72f5c05c727aab0b",
-        "name": "",
-        "rules": [
-            {
-                "t": "change",
-                "p": "payload",
-                "pt": "msg",
-                "from": "/home/pi/vids/Frasier/",
-                "fromt": "str",
-                "to": "",
-                "tot": "str"
-            },
-            {
-                "t": "change",
-                "p": "payload",
-                "pt": "msg",
-                "from": ".avi",
-                "fromt": "str",
-                "to": "",
-                "tot": "str"
-            },
-            {
-                "t": "change",
-                "p": "payload",
-                "pt": "msg",
-                "from": ".mkv",
-                "fromt": "str",
-                "to": "",
-                "tot": "str"
-            },
-            {
-                "t": "change",
-                "p": "payload",
-                "pt": "msg",
-                "from": "\"",
-                "fromt": "str",
-                "to": "",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 620,
-        "y": 660,
-        "wires": [
-            [
-                "c0066dba254d106b"
-            ]
-        ]
-    },
-    {
-        "id": "7db515215f33ec3b",
-        "type": "switch",
-        "z": "72f5c05c727aab0b",
-        "name": "if 'play'",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "play",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 160,
-        "y": 540,
-        "wires": [
-            [
-                "aef73ed5297d9ce0"
-            ]
-        ]
-    },
-    {
-        "id": "6523c18e72ca026b",
-        "type": "switch",
-        "z": "72f5c05c727aab0b",
-        "name": "if 'stop'",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "stop",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 300,
-        "y": 880,
-        "wires": [
-            [
-                "adc0ca30b256ced8"
-            ]
-        ]
-    },
-    {
-        "id": "c0066dba254d106b",
-        "type": "function",
-        "z": "72f5c05c727aab0b",
-        "name": "Parse data",
-        "func": "// Use a regular expression to split the payload on the first dash, with or without surrounding spaces\nlet parts = msg.payload.split(/ - |-(?!.* - )/);\n\n// Initialize an object to hold the extracted values\nlet result = {\n    season: \"\",\n    episode: \"\",\n    title: \"\"\n};\n\nif (parts.length >= 2) {\n    // The first part before the dash is assumed to be 'SxxExx'\n    let seasonEpisode = parts[0];\n    // Attempt to further split season and episode\n    let seasonEpisodeParts = seasonEpisode.match(/S(\\d+)E(\\d+)/i);\n    if (seasonEpisodeParts && seasonEpisodeParts.length === 3) {\n        result.season = seasonEpisodeParts[1];\n        result.episode = seasonEpisodeParts[2];\n    } else {\n        // Handle cases where the season/episode format doesn't match\n        result.season = \"Unknown\";\n        result.episode = \"Unknown\";\n    }\n\n    // Everything after the dash is the title\n    result.title = parts.slice(1).join(' - ').trim();\n} else {\n    // In case the string doesn't properly split, set a default or handle as error\n    result.title = \"Invalid format - \" + msg.payload;\n}\n\n// Assign the result object to msg.payload\nmsg.payload = result;\n\n// Return the message object to continue the flow\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 810,
-        "y": 660,
-        "wires": [
-            [
-                "4503e14a64404949",
-                "d6abaf82f7d40ddd"
-            ]
-        ]
-    },
-    {
-        "id": "d6abaf82f7d40ddd",
-        "type": "debug",
-        "z": "72f5c05c727aab0b",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 950,
-        "y": 660,
-        "wires": []
-    },
-    {
-        "id": "9ff3760bcfb52772",
-        "type": "debug",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 750,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "ac24b97d147b7468",
-        "type": "exec",
-        "z": "8ac09457512cbd8e",
-        "d": true,
-        "command": "cvlc  ",
-        "addpay": "VideoToPlay",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
-        "x": 570,
-        "y": 280,
-        "wires": [
-            [
-                "c4ee5fbc071ef093"
-            ],
-            [
-                "9ff3760bcfb52772"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "5cb111cec9cd26ef",
-        "type": "exec",
-        "z": "8ac09457512cbd8e",
-        "command": "sudo killall vlc",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Kill player procs",
-        "x": 300,
-        "y": 340,
-        "wires": [
-            [],
-            [],
-            [
-                "ac24b97d147b7468"
-            ]
-        ]
-    },
-    {
-        "id": "0d44434c3c8657e1",
-        "type": "function",
-        "z": "8ac09457512cbd8e",
-        "name": "Set flow context",
-        "func": "msg.VideoToPlay = '\"' + \"/home/pi/vids/Frasier/\" + msg.payload[msg.choice] + '\"'\nflow.set(\"LatestPlayedEpisodeNumber\", msg.choice)\nflow.set(\"LastestEpisode\", msg.VideoToPlay)\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 300,
-        "y": 260,
-        "wires": [
-            [
-                "e9e5c811c56f0540",
-                "5cb111cec9cd26ef",
-                "ac24b97d147b7468",
-                "d801b9d9c3f75be7"
-            ]
-        ]
-    },
-    {
-        "id": "64477da6eca669a1",
-        "type": "random",
-        "z": "8ac09457512cbd8e",
-        "name": "Pick 1",
-        "low": 1,
-        "high": "",
-        "inte": "true",
-        "property": "choice",
-        "x": 430,
-        "y": 180,
-        "wires": [
-            [
-                "0d44434c3c8657e1"
-            ]
-        ]
-    },
-    {
-        "id": "e9e5c811c56f0540",
-        "type": "debug",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": true,
-        "complete": "VideoToPlay",
-        "targetType": "msg",
-        "statusVal": "VideoToPlay",
-        "statusType": "msg",
-        "x": 750,
-        "y": 200,
-        "wires": []
-    },
-    {
-        "id": "d8662be7188100b6",
-        "type": "change",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "to",
-                "pt": "msg",
-                "to": "$flowContext(\"countSeinfeldEpisodes\")-1",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 290,
-        "y": 180,
-        "wires": [
-            [
-                "64477da6eca669a1"
-            ]
-        ],
-        "info": "The random node accepts an upper bound in msg.to\nSet it to the count of Frasier episodes"
-    },
-    {
-        "id": "d87ed3a1cabc1f8b",
-        "type": "json",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": true,
-        "x": 490,
-        "y": 120,
-        "wires": [
-            [
-                "d8662be7188100b6"
-            ]
-        ]
-    },
-    {
-        "id": "f96a26620dfe4cf7",
-        "type": "exec",
-        "z": "8ac09457512cbd8e",
-        "command": "python -c 'import os, json; print json.dumps(os.listdir(\"/home/pi/vids/Frasier\"))'",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "List Frasier episodes",
-        "x": 320,
-        "y": 120,
-        "wires": [
-            [
-                "d87ed3a1cabc1f8b"
-            ],
-            [],
-            []
-        ],
-        "info": "Converts the output of ls to a json object"
-    },
-    {
-        "id": "26a08b08cf074664",
-        "type": "inject",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "str",
-        "x": 90,
-        "y": 80,
-        "wires": [
-            [
-                "f96a26620dfe4cf7"
-            ]
-        ]
-    },
-    {
-        "id": "93e33681265732f6",
-        "type": "delay",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 110,
-        "y": 120,
-        "wires": [
-            [
-                "f96a26620dfe4cf7"
-            ]
-        ]
-    },
-    {
-        "id": "b2b3297de7d7e18c",
-        "type": "rpi-gpio in",
-        "z": "8ac09457512cbd8e",
-        "d": true,
-        "name": "Key 1",
-        "pin": "21",
-        "intype": "up",
-        "debounce": "25",
-        "read": false,
-        "bcm": true,
-        "x": 90,
-        "y": 180,
-        "wires": [
-            [
-                "93e33681265732f6"
-            ]
-        ]
-    },
-    {
-        "id": "c4ee5fbc071ef093",
-        "type": "debug",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 750,
-        "y": 280,
-        "wires": []
-    },
-    {
-        "id": "5c7f43450411d64b",
-        "type": "exec",
-        "z": "8ac09457512cbd8e",
-        "command": "cvlc -I http --http-port 43822 vlc://quit;",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Kill player procs",
-        "x": 300,
-        "y": 420,
-        "wires": [
-            [
-                "9ff3760bcfb52772"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "f1726227cd0d7aa1",
-        "type": "inject",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 130,
-        "y": 420,
-        "wires": [
-            [
-                "5c7f43450411d64b"
-            ]
-        ]
-    },
-    {
-        "id": "ae0eadcb8c5f5661",
-        "type": "exec",
-        "z": "8ac09457512cbd8e",
-        "command": "ls -1 /home/pi/vids/Seinfeld/S*mkv",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
-        "x": 340,
-        "y": 560,
-        "wires": [
-            [
-                "c08641bcdd7b4774"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "71bb770c1f08446e",
-        "type": "inject",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 110,
-        "y": 560,
-        "wires": [
-            [
-                "ae0eadcb8c5f5661"
-            ]
-        ]
-    },
-    {
-        "id": "c08641bcdd7b4774",
-        "type": "split",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "splt": "\\n",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "",
-        "x": 550,
-        "y": 560,
-        "wires": [
-            [
-                "8c10f31d30ee4fd4"
-            ]
-        ]
-    },
-    {
-        "id": "8c10f31d30ee4fd4",
-        "type": "change",
-        "z": "8ac09457512cbd8e",
-        "name": "Count the episodes",
-        "rules": [
-            {
-                "t": "set",
-                "p": "countSeinfeldEpisodes",
-                "pt": "flow",
-                "to": "parts.count",
-                "tot": "msg",
-                "dc": true
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 710,
-        "y": 560,
-        "wires": [
-            [
-                "4fd280c37e8e12b3"
-            ]
-        ]
-    },
-    {
-        "id": "4fd280c37e8e12b3",
-        "type": "debug",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 890,
-        "y": 560,
-        "wires": []
-    },
-    {
-        "id": "3493c1f4f885dfe0",
-        "type": "comment",
-        "z": "8ac09457512cbd8e",
-        "name": "Init",
-        "info": "This runs when node-red first starts or this flow deploys for the first time.",
-        "x": 80,
-        "y": 520,
-        "wires": []
-    },
-    {
-        "id": "4d7b11270210af90",
-        "type": "template",
-        "z": "8ac09457512cbd8e",
-        "name": "fake a sonos bookmark",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "{\n \"uri\": \"x-rincon-mp3radio://192.168.111.149:43822\",\n \"metadata\": \"&lt;DIDL-Lite xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:upnp=&quot;urn:schemas-upnp-org:metadata-1-0/upnp/&quot; xmlns:r=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot; xmlns=&quot;urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/&quot;&gt;&lt;item id=&quot;F10092020s32537&quot; parentID=&quot;L&quot; restricted=&quot;true&quot;&gt;&lt;dc:title&gt;{{msg.VideoToPlay}}&lt;/dc:title&gt;&lt;upnp:class&gt;object.item.audioItem.audioBroadcast&lt;/upnp:class&gt;&lt;desc id=&quot;cdudn&quot; nameSpace=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot;&gt;SA_RINCON65031_&lt;/desc&gt;&lt;/item&gt;&lt;/DIDL-Lite&gt;\",\n \"queue\": false\n}\n",
-        "output": "json",
-        "x": 730,
-        "y": 460,
-        "wires": [
-            [
-                "e1f10c46d611247d"
-            ]
-        ]
-    },
-    {
-        "id": "4fb511e4a53d88c9",
-        "type": "inject",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 520,
-        "y": 460,
-        "wires": [
-            [
-                "4d7b11270210af90"
-            ]
-        ]
-    },
-    {
-        "id": "d801b9d9c3f75be7",
-        "type": "exec",
-        "z": "8ac09457512cbd8e",
-        "command": "cvlc -I http --http-port 43822 --novideo",
-        "addpay": "VideoToPlay",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
-        "x": 700,
-        "y": 400,
-        "wires": [
-            [
-                "4d7b11270210af90"
-            ],
-            [
-                "db80330e66d2cd85"
-            ],
-            [
-                "db80330e66d2cd85"
-            ]
-        ]
-    },
-    {
-        "id": "e1f10c46d611247d",
-        "type": "debug",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 930,
-        "y": 520,
-        "wires": []
-    },
-    {
-        "id": "db80330e66d2cd85",
-        "type": "debug",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 950,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "aaa69681d409fbb4",
-        "type": "exec",
-        "z": "8ac09457512cbd8e",
-        "command": "python -c 'import os, json; print(json.dumps([f for f in os.listdir(\"/home/pi/vids/Frasier\") if f.startswith(\"S\")]))'",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "List Frasier episodes",
-        "x": 140,
-        "y": 820,
-        "wires": [
-            [
-                "b0bf952d38a8a02a"
-            ],
-            [
-                "56bf7833d81f8a3e"
-            ],
-            [
-                "a8230f61b1d66df1"
-            ]
-        ],
-        "info": "Converts the output of ls to a json object"
-    },
-    {
-        "id": "b0bf952d38a8a02a",
-        "type": "json",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": true,
-        "x": 330,
-        "y": 820,
-        "wires": [
-            [
-                "69787cd064a08f66",
-                "f53bb6cd4be48a10"
-            ]
-        ]
-    },
-    {
-        "id": "69787cd064a08f66",
-        "type": "change",
-        "z": "8ac09457512cbd8e",
-        "d": true,
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "to",
-                "pt": "msg",
-                "to": "$globalContext(\"countFrasierEpisodes\")-1",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 490,
-        "y": 820,
-        "wires": [
-            [
-                "369f4284b3860a5d",
-                "9bf6860e2c847165",
-                "c11c1167d9755a34"
-            ]
-        ],
-        "info": "The random node accepts an upper bound in msg.to\nSet it to the count of Frasier episodes"
-    },
-    {
-        "id": "bea68c3c8f7b383e",
-        "type": "random",
-        "z": "8ac09457512cbd8e",
-        "name": "Pick 1",
-        "low": "0",
-        "high": "",
-        "inte": "true",
-        "property": "choice",
-        "x": 910,
-        "y": 820,
-        "wires": [
-            [
-                "f64cdd8f1158e5b0"
-            ]
-        ]
-    },
-    {
-        "id": "369f4284b3860a5d",
-        "type": "trigger",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "op1": "",
-        "op2": "0",
-        "op1type": "pay",
-        "op2type": "str",
-        "duration": "-1",
-        "extend": false,
-        "overrideDelay": false,
-        "units": "ms",
-        "reset": "",
-        "bytopic": "all",
-        "topic": "topic",
-        "outputs": 1,
-        "x": 730,
-        "y": 820,
-        "wires": [
-            [
-                "bea68c3c8f7b383e"
-            ]
-        ]
-    },
-    {
-        "id": "9bf6860e2c847165",
-        "type": "delay",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "minutes",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 460,
-        "y": 900,
-        "wires": [
-            [
-                "b854e8a0bff48eb0"
-            ]
-        ]
-    },
-    {
-        "id": "b854e8a0bff48eb0",
-        "type": "change",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "reset",
-                "pt": "msg",
-                "to": "1",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 640,
-        "y": 900,
-        "wires": [
-            [
-                "369f4284b3860a5d",
-                "4e350eda63501f12"
-            ]
-        ]
-    },
-    {
-        "id": "c11c1167d9755a34",
-        "type": "debug",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "active": false,
-        "tosidebar": false,
-        "console": false,
-        "tostatus": true,
-        "complete": "payload",
-        "targetType": "jsonata",
-        "statusVal": "choice",
-        "statusType": "auto",
-        "x": 720,
-        "y": 740,
-        "wires": []
-    },
-    {
-        "id": "3068fe3f31b74105",
-        "type": "inject",
-        "z": "8ac09457512cbd8e",
-        "name": "Start",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 90,
-        "y": 720,
-        "wires": [
-            [
-                "7f5c861788ed178a"
-            ]
-        ]
-    },
-    {
-        "id": "f64cdd8f1158e5b0",
-        "type": "function",
-        "z": "8ac09457512cbd8e",
-        "name": "Update stats",
-        "func": "// Use a regular expression to split the payload on the first dash, with or without surrounding spaces\nlet parts = msg.payload[msg.choice].split(/ - |-(?!.* - )/);\n\n// Initialize an object to hold the extracted values\nlet result = {\n    identifier: \"\", // Replacing season and episode with a single identifier\n    title: \"\"\n};\n\nif (parts.length >= 2) {\n    // Directly use the first part as the identifier\n    result.identifier = parts[0].trim();\n\n    // Everything after the dash is the title, trimmed of any leading/trailing whitespace\n    result.title = parts.slice(1).join(' - ').trim();\n} else {\n    // In case the string doesn't properly split, set a default or handle as error\n    result.title = \"Invalid format - \" + msg.payload[msg.choice];\n    result.identifier = \"Unknown\";\n}\n\n// Initialize or retrieve the overall stats object from the flow context\nlet overallStats = flow.get(\"overallStats\") || {};\n\n// Construct a unique identifier for the current item, now directly using result.identifier\nvar filename = result.identifier;\n\n// Update the overallStats object\nif (!overallStats[filename]) {\n    // If the filename isn't already tracked, start tracking it with a count of 1\n    overallStats[filename] = 1;\n} else {\n    // If it is already tracked, increment its count\n    overallStats[filename]++;\n}\n\n// Save the updated overallStats back to the flow context\nflow.set(\"overallStats\", overallStats);\n\n// Optionally, set msg.payload to the updated stats for the current filename and return it\nmsg.payload = { filename: filename, count: overallStats[filename] };\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1050,
-        "y": 820,
-        "wires": [
-            [
-                "0fa41ef33f3e1828"
-            ]
-        ]
-    },
-    {
-        "id": "7f5c861788ed178a",
-        "type": "function",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "func": "\n// Retrieve all keys in the flow context\nconst keys = flow.keys();\n\n// Loop through each key and delete it\nkeys.forEach(key => {\n    flow.set(key, null); // Setting a flow context value to null effectively deletes it\n});\n\n// Optionally, you can emit a message or set a node status to indicate completion\nnode.status({fill:\"green\", shape:\"dot\", text:\"Flow context reset\"});\n\n// Return a message or null depending on your needs\nreturn msg; // or return null;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 120,
-        "y": 760,
-        "wires": [
-            [
-                "aaa69681d409fbb4"
-            ]
-        ]
-    },
-    {
-        "id": "56bf7833d81f8a3e",
-        "type": "debug",
-        "z": "8ac09457512cbd8e",
-        "name": "error",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": true,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "choice",
-        "statusType": "auto",
-        "x": 270,
-        "y": 920,
-        "wires": []
-    },
-    {
-        "id": "a8230f61b1d66df1",
-        "type": "debug",
-        "z": "8ac09457512cbd8e",
-        "name": "exit code",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": true,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "choice",
-        "statusType": "auto",
-        "x": 260,
-        "y": 1000,
-        "wires": []
-    },
-    {
-        "id": "5561c63f1b17a89a",
-        "type": "catch",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "scope": null,
-        "uncaught": false,
-        "x": 840,
-        "y": 980,
-        "wires": [
-            [
-                "92162ca7a33bc39c"
-            ]
-        ]
-    },
-    {
-        "id": "92162ca7a33bc39c",
-        "type": "debug",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1000,
-        "y": 980,
-        "wires": []
-    },
-    {
-        "id": "0fa41ef33f3e1828",
-        "type": "debug",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1230,
-        "y": 840,
-        "wires": []
-    },
-    {
-        "id": "d4051c71bae84c08",
-        "type": "function",
-        "z": "8ac09457512cbd8e",
-        "name": "Read stats",
-        "func": "\nmsg.payload = flow.get(\"overallStats\");\n\nlet csvContent = \"Identifier,Count\\n\"; // CSV Header\nconst overallStats = msg.payload; \n\n// Step 1: Extract identifiers and sort them alphabetically\nconst identifiers = Object.keys(overallStats).sort();\n\n// Step 2: Generate CSV content using sorted identifiers\nidentifiers.forEach(identifier => {\n    csvContent += `${identifier},${overallStats[identifier]}\\n`;\n});\n\nmsg.payload = csvContent;\nnode.log(csvContent);\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1090,
-        "y": 900,
-        "wires": [
-            [
-                "8347e14c11591f5b"
-            ]
-        ]
-    },
-    {
-        "id": "8347e14c11591f5b",
-        "type": "debug",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1290,
-        "y": 900,
-        "wires": []
-    },
-    {
-        "id": "f53bb6cd4be48a10",
-        "type": "function",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "func": "// Function Node Code\nconst countFrasierEpisodes = global.get(\"countFrasierEpisodes\")-1;\nlet overallStats = flow.get(\"overallStats\") || {};\n\nfor (let i = 0; i < 100000; i++) {\n    // Generate a random index within the valid range\n    let choice = Math.floor(Math.random() * countFrasierEpisodes);\n    \n    // Assuming msg.payload contains the data array\n    if (!Array.isArray(msg.payload) || msg.payload.length < countFrasierEpisodes) {\n        node.error(\"Payload is not an array or does not contain enough elements based on countFrasierEpisodes\");\n        return;\n    }\n\n    // Extract parts based on the randomly selected choice\n    let parts = msg.payload[choice].split(/ - |-(?!.* - )/);\n    let result = {\n        identifier: \"\",\n        title: \"\"\n    };\n\n    if (parts.length >= 2) {\n        result.identifier = parts[0].trim();\n        result.title = parts.slice(1).join(' - ').trim();\n    } else {\n        result.title = \"Invalid format - \" + msg.payload[choice];\n        result.identifier = \"Unknown\";\n    }\n\n    // Construct a unique identifier and update stats\n    var filename = result.identifier;\n    if (!overallStats[filename]) {\n        overallStats[filename] = 1;\n    } else {\n        overallStats[filename]++;\n    }\n}\n\n// Save the updated overallStats back to the flow context\nflow.set(\"overallStats\", overallStats);\n\n// Prepare a message payload to return or inspect\nmsg.payload = overallStats;\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 970,
-        "y": 740,
-        "wires": [
-            [
-                "d4051c71bae84c08"
-            ]
-        ]
-    },
-    {
-        "id": "cd0c70423e0ee229",
-        "type": "delay",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 860,
-        "y": 900,
-        "wires": [
-            [
-                "d4051c71bae84c08"
-            ]
-        ]
-    },
-    {
-        "id": "4e350eda63501f12",
-        "type": "change",
-        "z": "8ac09457512cbd8e",
-        "name": "",
-        "rules": [
-            {
-                "t": "delete",
-                "p": "reset",
-                "pt": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 650,
-        "y": 960,
-        "wires": [
-            [
-                "cd0c70423e0ee229"
-            ]
-        ]
-    },
-    {
-        "id": "9721ecde1fc2663f",
-        "type": "comment",
-        "z": "8ac09457512cbd8e",
-        "name": "Stats about the random functions",
-        "info": "The goal is to understand whether the random choice of an episode is truly uniformly distributed in the log run.\n\nI run here two experiments:\n1- almost completely included in the function and using the javascript random function.\n\n2- the other is via the random node-red node, and built with nodes. This is more closely similar to the way the Frasier player works, but it's also slow, and runnings a large number of iterations (to capture meaningful statistics) takes too long (especially compared to #1)",
-        "x": 180,
-        "y": 680,
-        "wires": []
-    },
-    {
-        "id": "31b643bba0c83eb5",
-        "type": "template",
-        "z": "f1a1bbee8a34c861",
-        "name": "Play Command",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "{\n    \"action\": \"play\",\n    \"video\": \"/home/pi/sample.mp4\"\n}",
-        "output": "str",
-        "x": 340,
-        "y": 100,
-        "wires": [
-            [
-                "c9e018163ec1c97a"
-            ]
-        ]
-    },
-    {
-        "id": "c9e018163ec1c97a",
-        "type": "tcp request",
-        "z": "f1a1bbee8a34c861",
-        "name": "Send Command to Service",
-        "server": "127.0.0.1",
-        "port": "5001",
-        "out": "time",
-        "ret": "string",
-        "splitc": "0",
-        "newline": "",
-        "trim": false,
-        "tls": "",
-        "x": 570,
-        "y": 160,
-        "wires": [
-            [
-                "bf7f0e684a451a3b"
-            ]
-        ]
-    },
-    {
-        "id": "bf7f0e684a451a3b",
-        "type": "debug",
-        "z": "f1a1bbee8a34c861",
-        "name": "Service Response",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 800,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "4f6b230c23571d07",
-        "type": "template",
-        "z": "f1a1bbee8a34c861",
-        "name": "Stop Command",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "{\n    \"action\": \"stop\"\n}",
-        "output": "str",
-        "x": 340,
-        "y": 220,
-        "wires": [
-            [
-                "c9e018163ec1c97a"
-            ]
-        ]
-    },
-    {
-        "id": "0e636bb35b5e916a",
-        "type": "inject",
-        "z": "f1a1bbee8a34c861",
-        "name": "Play",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 130,
-        "y": 100,
-        "wires": [
-            [
-                "31b643bba0c83eb5"
-            ]
-        ]
-    },
-    {
-        "id": "1860ad42399b9cc0",
-        "type": "inject",
-        "z": "f1a1bbee8a34c861",
-        "name": "Stop",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 150,
-        "y": 180,
-        "wires": [
-            [
-                "4f6b230c23571d07"
-            ]
-        ]
     }
 ]
