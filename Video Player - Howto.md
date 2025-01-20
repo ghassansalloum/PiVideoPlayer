@@ -4,6 +4,14 @@
 
 # Call VLC from Node-Red
 
+I learned that pre-pending the exec commands with ``` XDG_RUNTIME_DIR=/run/user/1000 ``` helps when there's a discrepancy
+between the result on the console (in ssh) and what you get with the same command in node-red.
+
+Specifically, this works:
+```
+XDG_RUNTIME_DIR=/run/user/1000 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus XDG_SESSION_TYPE=tty XDG_SESSION_CLASS=user /usr/bin/cvlc --file-caching=5000 --network-caching=10000 --no-fb-tty --vout fb --fbdev=/dev/fb0 sample.mp4
+```
+
 # Video-playing service
 This is a more indirect way to play the video. I created it in the process of debuggging and understanding 
 how interacting with the framebuffer truly works.
