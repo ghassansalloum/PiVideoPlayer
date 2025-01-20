@@ -63,4 +63,16 @@ Copy the driver to a more permanent location, and invoke it from rc.local when r
 sudo cp ~/fbcp-ili9341/build/fbcp-ili9341 /usr/local/lib/fbcp
 sudo nano /etc/rc.local
 ```
+Add the following (before the `exit 0` line):
+```
+# Start fbcp-ili9341 in the background
+/usr/local/lib/fbcp &
+
+exit 0
+```
+
+See the logs:
+```
+sudo journalctl -u rc-local.service
+```
 
