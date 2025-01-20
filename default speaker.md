@@ -35,7 +35,7 @@ systemctl --user restart pipewire
 
 # Get the list of available audio sinks and pick the one you want
 ```
-pactl list short sinks
+pactl list sinks | grep -E 'Sink #|Name:|Description:|Volume:'
 ```
 
 The Airplay speakers have this format: 
