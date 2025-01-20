@@ -4,7 +4,7 @@
 
 # Call VLC from Node-Red
 
-Call VLC from an `exec` node.
+Call VLC from an `exec` node. The downside of this method is that Node-Red owns the video playing session, and if I restart it  VLC will be killed and the video will stop.
 
 I learned that pre-pending the exec commands with ``` XDG_RUNTIME_DIR=/run/user/1000 ``` helps when there's a discrepancy
 between the result on the console (in ssh) and what you get with the same command in node-red. 
@@ -28,6 +28,8 @@ Et voila. The trick that eluded me for 3-4 years is to narrow down the list of o
 # Video-playing service (ABANDONED idea)
 
 (__I did not end up using this method, but I'm keeping it here in case it helps in the future. It was a cool idea and led me to the environment variables investigation.__)
+
+(__The upside of this method would be that if I am messing with Node-Red, this method would not interrupt a video that is playing__)
 
 This is a more indirect way to play the video. I created it in the process of debuggging and understanding 
 how interacting with the framebuffer truly works.
