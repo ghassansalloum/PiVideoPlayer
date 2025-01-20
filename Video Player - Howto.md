@@ -18,7 +18,7 @@ Et voila. The trick that eluded me for 3-4 years is to narrow down the list of o
 
 # Video-playing service (ABANDONED idea)
 
-(__I did not end up using this method, but I'm keeping it here in case it helps in the future__)
+(__I did not end up using this method, but I'm keeping it here in case it helps in the future. It was a cool idea and led me to the environment variables investigation.__)
 
 This is a more indirect way to play the video. I created it in the process of debuggging and understanding 
 how interacting with the framebuffer truly works.
