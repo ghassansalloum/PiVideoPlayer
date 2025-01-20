@@ -1,8 +1,10 @@
 # Two concepts:
 1. Call VLC straight from NodeRed
-2. Or, have a video playing service that takes commands from Node-Red.
+2. Or, have a video playing service that takes commands from Node-Red. (ABANDONED idea)
 
 # Call VLC from Node-Red
+
+Call VLC from an `exec` node.
 
 I learned that pre-pending the exec commands with ``` XDG_RUNTIME_DIR=/run/user/1000 ``` helps when there's a discrepancy
 between the result on the console (in ssh) and what you get with the same command in node-red. 
@@ -10,9 +12,16 @@ DBUS_SESSION_BUS_ADDRESS was also recommended, I added it just to be on the safe
 
 I ran ```env``` on the console, and then again in an `exec` in node-red. These two environment variables were among the ones that were different between the two results.
 
+I also learned that the `--no-fb-tty` was necessary, without it the video was displaying on the console despite the --fbdev option.
+
 Specifically, I verified that this works:
 ```
-XDG_RUNTIME_DIR=/run/user/1000 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus /usr/bin/cvlc --file-caching=5000 --network-caching=10000 --no-fb-tty --vout fb --fbdev=/dev/fb0 "/home/pi/vids/S10E05 - Tales From The Crypt.mp4"
+XDG_RUNTIME_DIR=/run/user/1000 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus /usr/bin/cvlc --file-caching=5000 --network-caching=10000 --no-fb-tty --vout fb --fbdev=/dev/fb0 --quiet sample.mp4"
+```
+
+This also works:
+```
+XDG_RUNTIME_DIR=/run/user/1000 /usr/bin/cvlc --file-caching=5000 --no-fb-tty --vout fb --fbdev=/dev/fb0 --quiet sample.mp4
 ```
 Et voila. The trick that eluded me for 3-4 years is to narrow down the list of options I need to pass, and to set up the proper environment variables when invoking the cvlc command.
 
