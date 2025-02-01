@@ -1,9 +1,10 @@
-This is the software stack needed to make the LCD HAT from Waveshare (1.3 inches for me) work
+This is the software stack needed to make the LCD HAT work
 
 
 # Install the fbcp driver
 Unfortunately it only works on 32-bit OSes, and uses an API that is deprecated on the Pi5+ hardware. Luckily I'm still using an RPi Zero 2 W.
 
+For the Waveshare 1.3" LCD HAT which uses the ST778VW chip use this:
 ```cd ~
 sudo apt install libraspberrypi-dev
 sudo apt install cmake
@@ -16,6 +17,11 @@ cmake -DDMA_RX_CHANNEL=5 -DUSE_DMA_TRANSFERS=ON -DSPI_BUS_CLOCK_DIVISOR=6 -DWAVE
 make -j
 sudo ./fbcp-ili9341
 ```
+
+For the 1.54" generic LCD for Retropie, which uses the ST7789V chip, follow these instructions.
+I looked up the pinout of the HAT ![image](https://github.com/user-attachments/assets/87207713-10df-4f54-9107-fa403608e1b9)
+and compared them with the 1.3" pinout to validate that they're the same (they're not).
+
 
 # Configure boot.config
 
