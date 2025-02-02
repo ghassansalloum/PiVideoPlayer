@@ -19,9 +19,10 @@ sudo ./fbcp-ili9341
 ```
 
 For the 1.54" generic LCD for Retropie, which uses the ST7789V chip, follow these instructions.
-I looked up the pinout of the HAT ![image](https://github.com/user-attachments/assets/87207713-10df-4f54-9107-fa403608e1b9)
-and compared them with the 1.3" pinout to validate that they're the same (they're not).
 
+Looked up the pinout of the HAT ![image](https://github.com/user-attachments/assets/87207713-10df-4f54-9107-fa403608e1b9)
+
+(TODO - Complete this section once I make the new screen work - fbcp-ili9341 doesnt seem to support the ST7789V variant)
 
 # Configure boot.config
 
